@@ -228,6 +228,7 @@
             transform-origin: 0 0;
         }
 
+        /* Updated solar panel styling - removed frames */
         .solar-panel-left,
         .solar-panel-right {
             position: absolute;
@@ -255,17 +256,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
-        .panel:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(52, 152, 219, 0.1) 0%, rgba(41, 128, 185, 0.3) 100%);
-            border-radius: 8px;
-        }
-
         .panel-cell {
             position: absolute;
             top: 10px;
@@ -286,81 +276,13 @@
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
-        .panel-frame {
-            position: absolute;
-            background: #1a2530;
-            border-radius: 5px;
-        }
-
-        .panel-frame-1 {
-            top: -8px;
-            left: -8px;
-            right: -8px;
-            height: 8px;
-        }
-
-        .panel-frame-2 {
-            bottom: -8px;
-            left: -8px;
-            right: -8px;
-            height: 8px;
-        }
-
-        .panel-frame-3 {
-            top: -8px;
-            left: -8px;
-            bottom: -8px;
-            width: 8px;
-        }
-
-        .panel-frame-4 {
-            top: -8px;
-            right: -8px;
-            bottom: -8px;
-            width: 8px;
-        }
-
-        .panel-stand {
-            position: absolute;
-            bottom: -40px;
-            width: 15px;
-            height: 40px;
-            background: #1a2530;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .panel-stand:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 10px;
-            background: #1a2530;
-            border-radius: 2px;
-        }
-
         /* Solar and Inverter Images */
-        .solar-image, .inverter-image {
+        .solar-image {
             position: absolute;
             z-index: 2;
             transition: transform 0.5s ease;
-        }
-
-        .solar-image {
-            width: 180px;
-            bottom: 15%;
-            left: 8%;
+            width: 120px;
             animation: float 6s ease-in-out infinite;
-        }
-
-        .inverter-image {
-            width: 160px;
-            bottom: 15%;
-            right: 8%;
-            animation: float 7s ease-in-out infinite 1s;
         }
 
         @keyframes float {
@@ -368,8 +290,49 @@
             50% { transform: translateY(-20px) rotate(5deg); }
         }
 
-        .solar-image:hover, .inverter-image:hover {
+        .solar-image:hover {
             transform: scale(1.1);
+        }
+
+        /* Position the 6 solar images */
+        .solar-image-1 {
+            bottom: 15%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .solar-image-2 {
+            bottom: 25%;
+            left: 15%;
+            animation-delay: 1s;
+            width: 100px;
+        }
+
+        .solar-image-3 {
+            bottom: 20%;
+            right: 15%;
+            animation-delay: 2s;
+            width: 100px;
+        }
+
+        .solar-image-4 {
+            bottom: 15%;
+            right: 5%;
+            animation-delay: 3s;
+        }
+
+        .solar-image-5 {
+            top: 25%;
+            left: 10%;
+            animation-delay: 4s;
+            width: 90px;
+        }
+
+        .solar-image-6 {
+            top: 25%;
+            right: 10%;
+            animation-delay: 5s;
+            width: 90px;
         }
 
         /* Services Section */
@@ -421,6 +384,9 @@
 
         .service-card:nth-child(2) { animation-delay: 0.2s !important; }
         .service-card:nth-child(3) { animation-delay: 0.4s !important; }
+        .service-card:nth-child(4) { animation-delay: 0.6s !important; }
+        .service-card:nth-child(5) { animation-delay: 0.8s !important; }
+        .service-card:nth-child(6) { animation-delay: 1.0s !important; }
 
         .service-card:hover {
             transform: translateY(-10px);
@@ -841,7 +807,7 @@
                 order: -1;
             }
             
-            .solar-image, .inverter-image {
+            .solar-image {
                 display: none;
             }
         }
@@ -891,9 +857,6 @@
     </style>
 </head>
 <body>
-    <!-- Floating Sun -->
-    <div class="sun-animation"></div>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="logo">Phoenix<span>Solution</span></div>
@@ -923,32 +886,27 @@
         <div class="solar-graphics">
             <div class="sun-rays"></div>
             
+            <!-- Removed panel frames as requested -->
             <div class="solar-panel-left">
                 <div class="panel">
                     <div class="panel-cell" id="panel-cells-left"></div>
-                    <div class="panel-frame panel-frame-1"></div>
-                    <div class="panel-frame panel-frame-2"></div>
-                    <div class="panel-frame panel-frame-3"></div>
-                    <div class="panel-frame panel-frame-4"></div>
-                    <div class="panel-stand"></div>
                 </div>
             </div>
             
             <div class="solar-panel-right">
                 <div class="panel">
                     <div class="panel-cell" id="panel-cells-right"></div>
-                    <div class="panel-frame panel-frame-1"></div>
-                    <div class="panel-frame panel-frame-2"></div>
-                    <div class="panel-frame panel-frame-3"></div>
-                    <div class="panel-frame panel-frame-4"></div>
-                    <div class="panel-stand"></div>
                 </div>
             </div>
         </div>
         
-        <!-- Solar and Inverter Images -->
-        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Solar Panel" class="solar-image">
-        <img src="https://980BB12F-9E99-4D0D-8F7F-82F426D65D7F.png" alt="Solar Inverter" class="inverter-image">
+        <!-- Six Solar Images as requested -->
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Solar Panel" class="solar-image solar-image-1">
+        <img src="https://images.unsplash.com/photo-1625014618427-fbc98b5ecde4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Solar Panel" class="solar-image solar-image-2">
+        <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Solar Panel" class="solar-image solar-image-3">
+        <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Solar Panel" class="solar-image solar-image-4">
+        <img src="https://images.unsplash.com/photo-1624974608395-7a5b395b3b1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Solar Panel" class="solar-image solar-image-5">
+        <img src="https://images.unsplash.com/photo-1624974608395-7a5b395b3b1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Solar Panel" class="solar-image solar-image-6">
         
         <div class="hero-content">
             <h1>Sustainable Power, Smart Choice – Phoenix Solution</h1>
@@ -1294,7 +1252,7 @@
             const ray = document.createElement('div');
             ray.className = 'ray';
             const angle = (i * 360) / numberOfRays;
-            ray.style.transform = rotate(${angle}deg) translateX(40vmin);
+            ray.style.transform = `rotate(${angle}deg) translateX(40vmin)`;
             ray.style.width = '20vmin';
             raysContainer.appendChild(ray);
         }
@@ -1314,7 +1272,7 @@
             panelCellsRight.appendChild(cellRight);
         }
 
-        // Scroll animations
+        // Scroll animations - Fixed version
         document.addEventListener('DOMContentLoaded', function() {
             const animateOnScroll = function() {
                 const elements = document.querySelectorAll('.service-card, .portfolio-item, .testimonial-card');
@@ -1329,7 +1287,10 @@
                 });
             };
             
+            // Initial check
             animateOnScroll();
+            
+            // Listen for scroll events
             window.addEventListener('scroll', animateOnScroll);
         });
 
@@ -1399,4 +1360,4 @@
         }, 800);
     </script>
 </body>
-</html>  ,
+</html>
