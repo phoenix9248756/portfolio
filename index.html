@@ -12,36 +12,36 @@
 
   <style>
     :root{
-      --bg1:#041821; --bg2:#062a37;
+      --bg1:#021620; --bg2:#07333f;
       --accent:#ffb86b; --accent-2:#ffd39f;
-      --muted:rgba(255,255,255,0.75);
+      --muted:rgba(255,255,255,0.78);
       --glass: rgba(255,255,255,0.03);
-      --success:#6ee7b7;
-      --wh:#25D366;
+      --success:#6ee7b7; --wh:#25D366;
+      --container:1200px;
     }
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;font-family:Inter, "Noto Sans Arabic", system-ui, sans-serif;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eef7ff;direction:rtl;scroll-behavior:smooth}
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
 
-    .wrap{max-width:1200px;margin:28px auto;padding:20px}
+    .wrap{max-width:var(--container);margin:28px auto;padding:20px}
 
     /* Header */
     header{display:flex;align-items:center;justify-content:space-between;gap:12px}
     .brand{display:flex;align-items:center;gap:14px}
-    .logo{width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#102030;font-size:18px;box-shadow:0 10px 30px rgba(0,0,0,0.45)}
+    .logo{width:68px;height:68px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#102030;font-size:18px;box-shadow:0 10px 30px rgba(0,0,0,0.45)}
     .brand h1{margin:0;font-size:18px}
     nav{display:flex;gap:10px;align-items:center}
     nav a{padding:8px 12px;border-radius:10px;font-weight:600;opacity:.98}
     .btn-wh{background:linear-gradient(90deg,#25D366,#128C7E);padding:10px 14px;border-radius:10px;color:white;font-weight:700;border:none;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
 
-    /* HERO */
+    /* Hero */
     .hero{
-      position:relative;margin-top:18px;border-radius:18px;overflow:hidden;padding:48px;
+      position:relative;margin-top:18px;border-radius:18px;overflow:hidden;padding:48px 36px 60px;
       background:
-        linear-gradient(180deg, rgba(1,6,12,0.35), rgba(1,6,12,0.15)),
-        url('https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000') center/cover no-repeat;
-      box-shadow:0 12px 40px rgba(0,0,0,0.7)
+        linear-gradient(180deg, rgba(1,6,12,0.36), rgba(1,6,12,0.14)),
+        url('https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&s=000') center/cover no-repeat;
+      box-shadow:0 14px 50px rgba(0,0,0,0.6)
     }
     .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
     .hero-title{font-size:34px;margin:0 0 12px;line-height:1.05}
@@ -52,8 +52,8 @@
 
     /* animated shapes */
     .shape{position:absolute;border-radius:50%;filter:blur(28px);opacity:.9;pointer-events:none}
-    .s1{right:-140px;top:-120px;width:480px;height:480px;background:radial-gradient(circle at 25% 25%, rgba(255,200,120,0.95), rgba(255,160,70,0.28) 40%, rgba(255,110,30,0.04) 65%);animation:spin 34s linear infinite}
-    .s2{right:-20px;top:80px;width:220px;height:220px;background:conic-gradient(from 0deg, rgba(255,200,120,.06), transparent 50%);animation:spin-rev 48s linear infinite}
+    .s1{right:-150px;top:-140px;width:520px;height:520px;background:radial-gradient(circle at 25% 25%, rgba(255,200,120,0.95), rgba(255,160,70,0.28) 38%, rgba(255,110,30,0.04) 65%);animation:spin 36s linear infinite}
+    .s2{right:10px;top:80px;width:220px;height:220px;background:conic-gradient(from 0deg, rgba(255,200,120,.06), transparent 50%);animation:spin-rev 48s linear infinite}
     @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
     @keyframes spin-rev{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
 
@@ -67,7 +67,7 @@
     .projects{margin-top:26px}
     .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .card-project{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);background:#071825;cursor:pointer;transition:transform .28s}
-    .card-project img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .6s}
+    .card-project img{width:100%;height:240px;object-fit:cover;display:block;transition:transform .6s}
     .card-project:hover{transform:translateY(-6px)}
     .card-project:hover img{transform:scale(1.06)}
     .project-info{position:absolute;inset:auto 0 0 0;padding:12px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.6));color:white}
@@ -108,6 +108,9 @@
     /* reveal */
     [data-fade]{opacity:0;transform:translateY(12px);transition:all .6s cubic-bezier(.2,.9,.2,1)}
     [data-fade].visible{opacity:1;transform:none}
+
+    /* small helper */
+    .muted{color:var(--muted)}
   </style>
 </head>
 <body>
@@ -117,7 +120,7 @@
         <div class="logo">PS</div>
         <div>
           <h1>Phoenix Tech & Solar</h1>
-          <div style="color:var(--muted);font-size:13px">پیشہ ور سولر انسٹالیشن — Residential & Commercial</div>
+          <div class="muted" style="font-size:13px">پیشہ ور سولر انسٹالیشن — Residential & Commercial</div>
         </div>
       </div>
 
@@ -276,7 +279,7 @@
     </footer>
   </div>
 
-  <!-- Project modal -->
+  <!-- Modal -->
   <div id="modal" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:9999">
     <div style="max-width:880px;width:92%;background:#071825;padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);position:relative">
       <button onclick="closeModal()" style="position:absolute;left:12px;top:12px;background:transparent;border:none;color:#fff;font-size:20px;cursor:pointer">✕</button>
@@ -285,31 +288,27 @@
   </div>
 
   <script>
-    // ---- CONFIG: replace these values before publishing ----
-    const MY_WHATSAPP = '92300XXXXXXX'; // <-- replace with your WhatsApp (no '+' sign)
+    // === CONFIG: replace these before publishing ===
+    const MY_WHATSAPP = '92300XXXXXXX'; // <-- your WhatsApp (no '+')
     const BIZ_DISPLAY = '+92 300 XXXXXXX';
-    // --------------------------------------------------------
+    // ===============================================
 
     document.getElementById('biz-number').textContent = BIZ_DISPLAY;
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Intersection reveal
+    // Reveal on scroll
     const fadeEls = document.querySelectorAll('[data-fade]');
     const io = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting) e.target.classList.add('visible');
-      });
-    }, {threshold: 0.12});
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, {threshold:0.12});
     fadeEls.forEach(el=>io.observe(el));
 
-    // Scroll helper
     function scrollTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
 
-    // WhatsApp helpers
     function openWhats(){
-      const name = document.getElementById('name') ? document.getElementById('name').value : '';
-      const phone = document.getElementById('phone') ? document.getElementById('phone').value : '';
-      const text = encodeURIComponent(`سلام! میری دلچسپی ہے — ${name} ${phone ? '\\nفون: '+phone : ''}\\nمزید معلومات دیں۔`);
+      const name = (document.getElementById('name')||{}).value || '';
+      const phone = (document.getElementById('phone')||{}).value || '';
+      const text = encodeURIComponent(`سلام! میری دلچسپی ہے — ${name} ${phone ? '\\nفون: '+phone : ''}\\nبراہِ کرم رابطہ کریں۔`);
       window.open(`https://api.whatsapp.com/send?phone=${MY_WHATSAPP}&text=${text}`, '_blank');
     }
 
@@ -323,23 +322,11 @@
       window.open(`https://api.whatsapp.com/send?phone=${MY_WHATSAPP}&text=${text}`, '_blank');
     }
 
-    // Projects data
+    // Projects data (replace or extend)
     const projects = [
-      {
-        title:'رہائشی چھت — 3kW',
-        img:'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000',
-        text:'3kW رہائشی سسٹم، 6 پینلز، 3kW انورٹر، بیٹری آپشن۔ مکمل سیٹ اپ اور مقامی سپورٹ۔'
-      },
-      {
-        title:'کمرشل پارکنگ — 15kW',
-        img:'https://images.unsplash.com/photo-1534274988759-8a73f3df7b22?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000',
-        text:'کمرشل سولر پارکنگ، 15kW پاور، کم مینٹیننس، 5 سال وارنٹی آپشن۔'
-      },
-      {
-        title:'گھر + بیٹری بیک اپ',
-        img:'https://images.unsplash.com/photo-1465250490301-3c0a5d0e3b8b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000',
-        text:'ہائبرڈ انورٹر + 8kWh لی آئن بیٹری، روزمرہ 6-8 گھنٹے بیک اپ کی صلاحیت۔'
-      }
+      {title:'رہائشی چھت — 3kW', img:'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000', text:'3kW رہائشی سسٹم، 6 پینلز، 3kW انورٹر، بیٹری آپشن۔'},
+      {title:'کمرشل پارکنگ — 15kW', img:'https://images.unsplash.com/photo-1534274988759-8a73f3df7b22?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000', text:'کمرشل سولر پارکنگ، 15kW پاور، کم مینٹیننس۔'},
+      {title:'گھر + بیٹری بیک اپ', img:'https://images.unsplash.com/photo-1465250490301-3c0a5d0e3b8b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000', text:'ہائبرڈ انورٹر + 8kWh بیٹری، روزانہ 6-8 گھنٹے بیک اپ۔'}
     ];
 
     function openModal(i){
@@ -359,12 +346,13 @@
     }
     function closeModal(){ document.getElementById('modal').style.display = 'none'; }
 
-    document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeModal(); });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
 
-    // Lazy images fade
+    // Lazy load fade for images
     document.addEventListener('DOMContentLoaded', ()=>{
       document.querySelectorAll('img').forEach(img=>{
-        if(img.complete) return; img.style.opacity=0; img.style.transition='opacity .6s ease'; img.addEventListener('load',()=> img.style.opacity=1);
+        if(img.complete) return; img.style.opacity=0; img.style.transition='opacity .6s ease';
+        img.addEventListener('load', ()=> img.style.opacity=1);
       });
     });
   </script>
