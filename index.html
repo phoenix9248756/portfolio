@@ -1,164 +1,378 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ur" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phoenix Solar Solutions</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phoenix Tech & Solar — پروفیشنل سولر پورٹ فولیو</title>
+  <meta name="description" content="Phoenix Tech & Solar — Residential & Commercial solar installations. Free site survey & WhatsApp contact." />
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    /* Reset & Fonts */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; }
-
-    header {
-      height: 100vh;
-      background: url('assets/solar-hero.jpg') center/cover no-repeat;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      color: white; text-align: center; position: relative;
+    :root{
+      --bg1:#061a24; --bg2:#072a36;
+      --accent:#ffb86b; --accent2:#ffd39f;
+      --card: rgba(255,255,255,0.03); --muted: rgba(255,255,255,0.75);
+      --wh-green: #25D366;
     }
-    header::after {
-      content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.5);
-    }
-    header h1, header p, header a { position: relative; z-index: 1; }
-    header h1 {
-      font-size: 3rem; animation: fadeInDown 1.2s ease;
-    }
-    header p { font-size: 1.3rem; margin: 15px 0; animation: fadeInUp 1.5s ease; }
-    header a {
-      padding: 12px 24px; background: #00a859; color: white; text-decoration: none;
-      border-radius: 30px; font-weight: bold; transition: 0.3s; animation: fadeInUp 1.8s ease;
-    }
-    header a:hover { background: #007a40; }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, "Noto Sans Arabic", system-ui, sans-serif;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eef7ff;direction:rtl}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
 
-    @keyframes fadeInDown { from {opacity:0; transform: translateY(-40px);} to {opacity:1; transform: translateY(0);} }
-    @keyframes fadeInUp { from {opacity:0; transform: translateY(40px);} to {opacity:1; transform: translateY(0);} }
+    .container{max-width:1200px;margin:28px auto;padding:20px}
 
-    section { padding: 70px 10%; }
-    section h2 { text-align: center; font-size: 2.2rem; margin-bottom: 40px; color: #222; }
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#102030;font-size:18px;box-shadow:0 10px 30px rgba(0,0,0,0.45)}
+    .brand h1{margin:0;font-size:18px}
+    nav{display:flex;gap:10px;align-items:center}
+    nav a{padding:8px 12px;border-radius:10px;font-weight:600;opacity:.95}
+    .cta-wh{background:linear-gradient(90deg,#25D366,#128C7E);padding:10px 14px;border-radius:10px;color:white;font-weight:700;border:none;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
 
-    /* About */
-    .about { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
-    .about img { flex: 1; max-width: 450px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-    .about-text { flex: 2; font-size: 1.1rem; line-height: 1.7; }
+    /* Hero */
+    .hero{position:relative;margin-top:18px;border-radius:18px;overflow:hidden;padding:36px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+    .hero-left{padding-right:10px}
+    .hero-title{font-size:32px;margin:0 0 10px;line-height:1.05}
+    .hero-sub{color:var(--muted);margin:0 0 18px}
+    .hero-buttons{display:flex;gap:12px}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#102030;padding:12px 18px;border-radius:12px;font-weight:800;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(255,184,107,0.12);transform:translateY(0);transition:transform .18s}
+    .btn-primary:hover{transform:translateY(-4px)}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px}
 
-    /* Services */
-    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-    .service-card {
-      background: white; padding: 25px; border-radius: 15px; text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s;
-    }
-    .service-card:hover { transform: translateY(-10px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
-    .service-card img { width: 80px; margin-bottom: 15px; }
+    /* shapes */
+    .shape { position:absolute;border-radius:50%;filter:blur(34px);opacity:.85;pointer-events:none; }
+    .s1{right:-140px;top:-80px;width:420px;height:420px;background:radial-gradient(circle at 25% 25%, rgba(255,200,120,0.95), rgba(255,160,70,0.28) 40%, rgba(255,110,30,0.04) 65%);animation:spin 28s linear infinite}
+    .s2{right:40px;top:60px;width:170px;height:170px;background:conic-gradient(from 0deg, rgba(255,200,120,.08), transparent 40%);animation:spin-rev 48s linear infinite}
+    @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+    @keyframes spin-rev{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+
+    /* Features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    .feature{background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);padding:18px;border-radius:12px;border:1px solid var(--card);transition:transform .2s;display:flex;gap:12px;align-items:center}
+    .feature:hover{transform:translateY(-8px)}
+    .feature .icon{width:56px;height:56px;border-radius:10px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);font-size:20px}
 
     /* Projects */
-    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-    .project-card {
-      background: white; border-radius: 15px; overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s;
-    }
-    .project-card img { width: 100%; height: 200px; object-fit: cover; }
-    .project-card:hover { transform: scale(1.05); }
-    .project-info { padding: 15px; }
-    .project-info h3 { margin-bottom: 10px; }
+    .projects{margin-top:26px}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card-project{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);background:#071825;cursor:pointer;transition:transform .28s}
+    .card-project img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .6s}
+    .card-project:hover{transform:translateY(-6px)}
+    .card-project:hover img{transform:scale(1.06)}
+    .project-info{position:absolute;inset:auto 0 0 0;padding:12px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.6));color:white}
+
+    /* gallery */
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+    .gallery img{width:100%;height:110px;object-fit:cover;border-radius:8px;transition:transform .3s}
+    .gallery img:hover{transform:scale(1.03)}
+
+    /* testimonials */
+    .testimonials{margin-top:24px;display:flex;gap:12px}
+    .testimonial{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:16px;border-radius:12px;border:1px solid var(--card);flex:1}
 
     /* Contact */
-    .contact { text-align: center; }
-    .contact p { margin: 10px 0; }
-    .contact a {
-      display: inline-block; margin-top: 15px; padding: 12px 24px; background: #25d366;
-      color: white; border-radius: 30px; text-decoration: none; font-weight: bold; transition: 0.3s;
-    }
-    .contact a:hover { background: #1da851; }
+    .contact{margin-top:24px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:18px;border-radius:12px;border:1px solid var(--card);display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
+    .contact form{display:flex;flex-direction:column;gap:10px}
+    input,textarea,select{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit}
+    .biz{padding:14px;border-radius:10px;background:rgba(0,0,0,0.04)}
 
-    footer {
-      background: #111; color: #aaa; text-align: center; padding: 20px; margin-top: 30px;
+    /* footer */
+    footer{margin-top:26px;padding:18px;text-align:center;color:var(--muted);font-size:14px}
+
+    /* responsive */
+    @media (max-width:1024px){
+      .hero-grid{grid-template-columns:1fr 360px}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .projects-grid{grid-template-columns:repeat(2,1fr)}
+      .gallery{grid-template-columns:repeat(3,1fr)}
+      .contact{grid-template-columns:1fr}
     }
+    @media (max-width:600px){
+      .hero-grid{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr}
+      .projects-grid{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+    }
+
+    /* fade-in */
+    [data-fade]{opacity:0;transform:translateY(8px);transition:all .6s cubic-bezier(.2,.9,.2,1)}
+    [data-fade].visible{opacity:1;transform:none}
   </style>
 </head>
 <body>
 
-  <!-- Hero -->
-  <header>
-    <h1>Phoenix Solar Solutions</h1>
-    <p>Powering Homes & Businesses with Clean Energy</p>
-    <a href="#contact">Get in Touch</a>
-  </header>
-
-  <!-- About -->
-  <section id="about">
-    <h2>About Us</h2>
-    <div class="about">
-      <img src="assets/about-solar.jpg" alt="About Solar">
-      <div class="about-text">
-        <p>We provide professional solar panel installation, inverter systems, and complete renewable energy solutions for homes and businesses. With years of experience, we deliver reliable projects that save energy costs and protect the environment.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services">
-    <h2>Our Services</h2>
-    <div class="services">
-      <div class="service-card">
-        <img src="assets/panel-icon.png" alt="Panels">
-        <h3>Solar Installation</h3>
-        <p>High-quality solar panels installed for maximum efficiency.</p>
-      </div>
-      <div class="service-card">
-        <img src="assets/inverter-icon.png" alt="Inverter">
-        <h3>Inverter Setup</h3>
-        <p>Reliable inverter installation for stable energy conversion.</p>
-      </div>
-      <div class="service-card">
-        <img src="assets/maintenance-icon.png" alt="Maintenance">
-        <h3>Maintenance</h3>
-        <p>Regular inspection & maintenance for long-term performance.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects">
-    <h2>Completed Projects</h2>
-    <div class="projects">
-      <div class="project-card">
-        <img src="assets/project1.jpg" alt="Solar Project 1">
-        <div class="project-info">
-          <h3>Residential 5kW System</h3>
-          <p>Installed for a home with full backup support.</p>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">PS</div>
+        <div>
+          <h1>Phoenix Tech & Solar</h1>
+          <div style="color:var(--muted);font-size:13px">مکمل سولر انسٹالیشن — Residential & Commercial</div>
         </div>
       </div>
-      <div class="project-card">
-        <img src="assets/project2.jpg" alt="Solar Project 2">
-        <div class="project-info">
-          <h3>Commercial 20kW System</h3>
-          <p>Large-scale installation for a factory unit.</p>
+
+      <nav>
+        <a href="#projects">پراجیکٹس</a>
+        <a href="#services">سروسز</a>
+        <a href="#contact">رابطہ</a>
+        <button class="cta-wh" onclick="openWhats()" title="WhatsApp">📲 WhatsApp</button>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Hero">
+      <div class="shape s1" aria-hidden></div>
+      <div class="shape s2" aria-hidden></div>
+
+      <div class="hero-grid">
+        <div class="hero-left">
+          <h2 class="hero-title" data-fade>اب اپنے گھر یا کاروبار میں توانائی بچائیں — جدید سولر حل</h2>
+          <p class="hero-sub" data-fade>ہم پلان، سپلائی اور انسٹالیشن کرتے ہیں — پینلز، انورٹر، بیٹری اور بعد از فروخت سروس۔ مفت سائٹ سروے آج ہی بک کریں۔</p>
+
+          <div class="hero-buttons" data-fade>
+            <button class="btn-primary" onclick="scrollTo('contact')">فری سائٹ سروے بک کریں</button>
+            <a class="btn-ghost" href="#projects">ہمارے پراجیکٹس</a>
+          </div>
+
+          <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap" data-fade>
+            <div style="background:var(--card);padding:8px 10px;border-radius:999px;font-weight:700;color:var(--muted)">گارنٹی</div>
+            <div style="background:var(--card);padding:8px 10px;border-radius:999px;font-weight:700;color:var(--muted)">پری وِسٹ سروے</div>
+            <div style="background:var(--card);padding:8px 10px;border-radius:999px;font-weight:700;color:var(--muted)">مینٹیننس</div>
+          </div>
+        </div>
+
+        <aside>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div class="feature" data-fade>
+              <div class="icon">⚡</div>
+              <div>
+                <div style="font-weight:700">توانائی بچت</div>
+                <div style="color:var(--muted);font-size:13px">بجلی کے بل میں نمایاں کمی</div>
+              </div>
+            </div>
+
+            <div class="feature" data-fade>
+              <div class="icon">🛠️</div>
+              <div>
+                <div style="font-weight:700">ماہر ٹیم</div>
+                <div style="color:var(--muted);font-size:13px">تجربہ کار تکنیکی عملہ</div>
+              </div>
+            </div>
+
+            <div style="padding:12px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div>
+                  <div style="font-weight:800;font-size:16px">100+ مکمل پراجیکٹس</div>
+                  <div style="color:var(--muted);font-size:13px">ریزلٹ-اورینٹڈ</div>
+                </div>
+                <div style="font-weight:800;color:#6ee7b7">⭐ 4.9</div>
+              </div>
+            </div>
+
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Services / Features -->
+    <section id="services">
+      <div class="features">
+        <div class="feature" data-fade>
+          <div class="icon">🏠</div>
+          <div>
+            <div style="font-weight:700">ریزیڈینشل سولر</div>
+            <div style="color:var(--muted);font-size:13px">1kW — 10kW تک گھریلو سسٹمز</div>
+          </div>
+        </div>
+        <div class="feature" data-fade>
+          <div class="icon">🏢</div>
+          <div>
+            <div style="font-weight:700">کمرشل سولر</div>
+            <div style="color:var(--muted);font-size:13px">فیکٹری/دفاتر کے لیے بڑے سسٹمز</div>
+          </div>
+        </div>
+        <div class="feature" data-fade>
+          <div class="icon">🔋</div>
+          <div>
+            <div style="font-weight:700">بیٹری بیک اپ</div>
+            <div style="color:var(--muted);font-size:13px">لی آئن / لیڈ ایسڈ اختیارات</div>
+          </div>
         </div>
       </div>
-      <div class="project-card">
-        <img src="assets/project3.jpg" alt="Solar Project 3">
-        <div class="project-info">
-          <h3>Hybrid Inverter Setup</h3>
-          <p>Smart hybrid inverter with solar & grid integration.</p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="projects">
+      <h3 style="margin-top:18px">حالیہ مکمل پراجیکٹس</h3>
+      <div class="projects-grid" style="margin-top:12px">
+        <!-- Project 1 -->
+        <div class="card-project" onclick="openModal(0)" data-fade>
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000" alt="Residential Solar">
+          <div class="project-info">رہائشی چھت — 3kW</div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="card-project" onclick="openModal(1)" data-fade>
+          <img src="https://images.unsplash.com/photo-1534274988759-8a73f3df7b22?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000" alt="Commercial Solar">
+          <div class="project-info">کمرشل پارکنگ — 15kW</div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="card-project" onclick="openModal(2)" data-fade>
+          <img src="https://images.unsplash.com/photo-1465250490301-3c0a5d0e3b8b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000" alt="Hybrid Solar">
+          <div class="project-info">گھر + بیٹری بیک اپ</div>
         </div>
       </div>
+    </section>
+
+    <!-- Gallery -->
+    <section style="margin-top:18px">
+      <h3>گیلری</h3>
+      <div class="gallery" style="margin-top:10px">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=000" alt="panel1">
+        <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=000" alt="panel2">
+        <img src="https://images.unsplash.com/photo-1491972690050-ba117db4dc09?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=000" alt="panel3">
+        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=000" alt="panel4">
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section style="margin-top:20px">
+      <h3>کلائنٹ کی رائے</h3>
+      <div class="testimonials">
+        <div class="testimonial" data-fade>"شاندار انسٹالیشن، بروقت اور پروفیشنل سروس۔" — احمد خان</div>
+        <div class="testimonial" data-fade>"بجلی کے بل میں واضح کمی آئی، بہت خوش ہیں۔" — سارہ بیگ</div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact" aria-label="Contact">
+      <form onsubmit="submitContact(event)">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <input type="text" id="name" placeholder="آپ کا نام" required style="flex:1;min-width:180px">
+          <input type="tel" id="phone" placeholder="WhatsApp نمبر (92300...)" required style="width:210px">
+        </div>
+        <input type="email" id="email" placeholder="ایمیل (اختیاری)">
+        <textarea id="msg" rows="5" placeholder="اپنا پیغام لکھیں" required></textarea>
+        <div style="display:flex;gap:10px">
+          <button class="btn-primary" type="submit">پیغام بھیجیں</button>
+          <button type="button" class="btn-ghost" onclick="openWhats()">براہِ راست WhatsApp</button>
+        </div>
+      </form>
+
+      <div class="biz contact-right">
+        <div style="font-weight:800">Phoenix Tech & Solar</div>
+        <div style="color:var(--muted);margin-top:6px">Lahore, Pakistan</div>
+        <div style="margin-top:12px">
+          <div style="font-weight:700">فوری WhatsApp</div>
+          <div style="color:var(--muted);margin-top:4px" id="biz-number">+92 300 XXXXXXX</div>
+        </div>
+        <div style="margin-top:12px;color:var(--muted);font-size:13px">ہم منصوبہ بندی، سپلائی اور پروفیشنل انسٹالیشن فراہم کرتے ہیں—فری مشاورت کے لیے رابطہ کریں۔</div>
+      </div>
+    </section>
+
+    <footer>
+      © Phoenix Tech & Solar — Hafiz Faizan / Phoenix Solution — <span id="year"></span>
+    </footer>
+  </div>
+
+  <!-- Modal for project details -->
+  <div id="modal" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:9999">
+    <div style="max-width:880px;width:92%;background:#081922;padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);position:relative">
+      <button onclick="closeModal()" style="position:absolute;left:12px;top:12px;background:transparent;border:none;color:#fff;font-size:20px;cursor:pointer">✕</button>
+      <div id="modal-content"></div>
     </div>
-  </section>
+  </div>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <div class="contact">
-      <p>Email: info@phoenixsolar.com</p>
-      <p>Phone: +92 300 1234567</p>
-      <p>Address: Lahore, Pakistan</p>
-      <a href="https://wa.me/923001234567" target="_blank">Chat on WhatsApp</a>
-    </div>
-  </section>
+  <script>
+    // ---- CONFIG: replace these ----
+    const MY_WHATSAPP = '92300XXXXXXX'; // <- replace with your WhatsApp (no +)
+    const BIZ_DISPLAY = '+92 300 XXXXXXX';
+    // --------------------------------
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Phoenix Solar Solutions. All rights reserved.</p>
-  </footer>
+    document.getElementById('biz-number').textContent = BIZ_DISPLAY;
+    document.getElementById('year').textContent = new Date().getFullYear();
 
+    // fade-in observer
+    const fadeEls = document.querySelectorAll('[data-fade]');
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, {threshold: 0.12});
+    fadeEls.forEach(el=>obs.observe(el));
+
+    function scrollTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+    // WhatsApp helpers
+    function openWhats(){
+      const name = document.getElementById('name') ? document.getElementById('name').value : '';
+      const phone = document.getElementById('phone') ? document.getElementById('phone').value : '';
+      const text = encodeURIComponent(`سلام! میری دلچسپی ہے — ${name} ${phone ? '\\nفون: '+phone : ''}\\nبراہِ کرم رابطہ کریں۔`);
+      window.open(`https://api.whatsapp.com/send?phone=${MY_WHATSAPP}&text=${text}`, '_blank');
+    }
+
+    function submitContact(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value || '';
+      const phone = document.getElementById('phone').value || '';
+      const email = document.getElementById('email').value || '';
+      const msg = document.getElementById('msg').value || '';
+      const text = encodeURIComponent(`سلام! میرا نام: ${name}\\nفون: ${phone}\\nایمیل: ${email}\\n\\nپیغام:\\n${msg}`);
+      window.open(`https://api.whatsapp.com/send?phone=${MY_WHATSAPP}&text=${text}`, '_blank');
+    }
+
+    // Projects modal data
+    const projects = [
+      {
+        title:'رہائشی چھت — 3kW',
+        img:'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000',
+        text:'3kW رہائشی نظام، 6 پینلز، 3kW انورٹر، بیٹری آپشن۔ مکمل سیٹ اپ اور 1 سال سروس۔'
+      },
+      {
+        title:'کمرشل پارکنگ — 15kW',
+        img:'https://images.unsplash.com/photo-1534274988759-8a73f3df7b22?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000',
+        text:'کمرشل سولر پارکنگ، 15kW پاور، کم مینٹیننس، 5 سال وارنٹی آپشن۔'
+      },
+      {
+        title:'گھر + بیٹری بیک اپ',
+        img:'https://images.unsplash.com/photo-1465250490301-3c0a5d0e3b8b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000',
+        text:'ہائبرڈ انورٹر + 8kWh لی آئن بیٹری، روزمرہ 6-8 گھنٹے بیک اپ کی صلاحیت۔'
+      }
+    ];
+
+    function openModal(i){
+      const modal = document.getElementById('modal');
+      const content = document.getElementById('modal-content');
+      const p = projects[i];
+      content.innerHTML = `
+        <h3 style="margin-top:0">${p.title}</h3>
+        <img src="${p.img}" alt="${p.title}" style="width:100%;height:360px;object-fit:cover;border-radius:8px;margin-bottom:12px">
+        <p style="color:var(--muted)">${p.text}</p>
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <button class="btn-primary" onclick="scrollTo('contact');closeModal()">پراجیکٹ پر رابطہ کریں</button>
+          <button class="btn-ghost" onclick="openWhats()">WhatsApp</button>
+        </div>
+      `;
+      modal.style.display = 'flex';
+    }
+    function closeModal(){ document.getElementById('modal').style.display = 'none'; }
+
+    document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeModal(); });
+
+    // Lazy fade in images
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.querySelectorAll('img').forEach(img=>{
+        if(img.complete) return;
+        img.style.opacity = 0; img.style.transition = 'opacity .6s ease';
+        img.addEventListener('load', ()=> img.style.opacity = 1);
+      });
+    });
+  </script>
 </body>
 </html>
