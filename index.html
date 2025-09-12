@@ -2,7 +2,7 @@
 <html lang="ur" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Phoenix Tech & Solar — پروفیشنل سولر پورٹ فولیو</title>
   <meta name="description" content="Phoenix Tech & Solar — Residential & Commercial solar installations. Free site survey & WhatsApp contact." />
   <link rel="icon" href="/favicon.ico" />
@@ -12,52 +12,58 @@
 
   <style>
     :root{
-      --bg1:#061a24; --bg2:#072a36;
-      --accent:#ffb86b; --accent2:#ffd39f;
-      --card: rgba(255,255,255,0.03); --muted: rgba(255,255,255,0.75);
-      --wh-green: #25D366;
+      --bg1:#041821; --bg2:#062a37;
+      --accent:#ffb86b; --accent-2:#ffd39f;
+      --muted:rgba(255,255,255,0.75);
+      --glass: rgba(255,255,255,0.03);
+      --success:#6ee7b7;
+      --wh:#25D366;
     }
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter, "Noto Sans Arabic", system-ui, sans-serif;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eef7ff;direction:rtl}
+    html,body{height:100%;margin:0;font-family:Inter, "Noto Sans Arabic", system-ui, sans-serif;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eef7ff;direction:rtl;scroll-behavior:smooth}
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
 
-    .container{max-width:1200px;margin:28px auto;padding:20px}
+    .wrap{max-width:1200px;margin:28px auto;padding:20px}
 
     /* Header */
     header{display:flex;align-items:center;justify-content:space-between;gap:12px}
     .brand{display:flex;align-items:center;gap:14px}
-    .logo{width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#102030;font-size:18px;box-shadow:0 10px 30px rgba(0,0,0,0.45)}
+    .logo{width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#102030;font-size:18px;box-shadow:0 10px 30px rgba(0,0,0,0.45)}
     .brand h1{margin:0;font-size:18px}
     nav{display:flex;gap:10px;align-items:center}
-    nav a{padding:8px 12px;border-radius:10px;font-weight:600;opacity:.95}
-    .cta-wh{background:linear-gradient(90deg,#25D366,#128C7E);padding:10px 14px;border-radius:10px;color:white;font-weight:700;border:none;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+    nav a{padding:8px 12px;border-radius:10px;font-weight:600;opacity:.98}
+    .btn-wh{background:linear-gradient(90deg,#25D366,#128C7E);padding:10px 14px;border-radius:10px;color:white;font-weight:700;border:none;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
 
-    /* Hero */
-    .hero{position:relative;margin-top:18px;border-radius:18px;overflow:hidden;padding:36px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+    /* HERO */
+    .hero{
+      position:relative;margin-top:18px;border-radius:18px;overflow:hidden;padding:48px;
+      background:
+        linear-gradient(180deg, rgba(1,6,12,0.35), rgba(1,6,12,0.15)),
+        url('https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000') center/cover no-repeat;
+      box-shadow:0 12px 40px rgba(0,0,0,0.7)
+    }
     .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
-    .hero-left{padding-right:10px}
-    .hero-title{font-size:32px;margin:0 0 10px;line-height:1.05}
-    .hero-sub{color:var(--muted);margin:0 0 18px}
-    .hero-buttons{display:flex;gap:12px}
-    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#102030;padding:12px 18px;border-radius:12px;font-weight:800;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(255,184,107,0.12);transform:translateY(0);transition:transform .18s}
-    .btn-primary:hover{transform:translateY(-4px)}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px}
+    .hero-title{font-size:34px;margin:0 0 12px;line-height:1.05}
+    .hero-sub{color:var(--muted);margin:0 0 18px;font-size:16px}
+    .hero-cta{display:flex;gap:12px;align-items:center}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#102030;padding:12px 18px;border-radius:12px;font-weight:800;border:none;cursor:pointer}
+    .btn-muted{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:12px}
 
-    /* shapes */
-    .shape { position:absolute;border-radius:50%;filter:blur(34px);opacity:.85;pointer-events:none; }
-    .s1{right:-140px;top:-80px;width:420px;height:420px;background:radial-gradient(circle at 25% 25%, rgba(255,200,120,0.95), rgba(255,160,70,0.28) 40%, rgba(255,110,30,0.04) 65%);animation:spin 28s linear infinite}
-    .s2{right:40px;top:60px;width:170px;height:170px;background:conic-gradient(from 0deg, rgba(255,200,120,.08), transparent 40%);animation:spin-rev 48s linear infinite}
+    /* animated shapes */
+    .shape{position:absolute;border-radius:50%;filter:blur(28px);opacity:.9;pointer-events:none}
+    .s1{right:-140px;top:-120px;width:480px;height:480px;background:radial-gradient(circle at 25% 25%, rgba(255,200,120,0.95), rgba(255,160,70,0.28) 40%, rgba(255,110,30,0.04) 65%);animation:spin 34s linear infinite}
+    .s2{right:-20px;top:80px;width:220px;height:220px;background:conic-gradient(from 0deg, rgba(255,200,120,.06), transparent 50%);animation:spin-rev 48s linear infinite}
     @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
     @keyframes spin-rev{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
 
-    /* Features */
+    /* features */
     .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
-    .feature{background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);padding:18px;border-radius:12px;border:1px solid var(--card);transition:transform .2s;display:flex;gap:12px;align-items:center}
+    .feature{background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);padding:18px;border-radius:12px;border:1px solid var(--glass);transition:transform .2s;display:flex;gap:12px;align-items:center}
     .feature:hover{transform:translateY(-8px)}
-    .feature .icon{width:56px;height:56px;border-radius:10px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);font-size:20px}
+    .ficon{width:56px;height:56px;border-radius:10px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);font-size:20px}
 
-    /* Projects */
+    /* projects */
     .projects{margin-top:26px}
     .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .card-project{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);background:#071825;cursor:pointer;transition:transform .28s}
@@ -73,12 +79,12 @@
 
     /* testimonials */
     .testimonials{margin-top:24px;display:flex;gap:12px}
-    .testimonial{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:16px;border-radius:12px;border:1px solid var(--card);flex:1}
+    .testimonial{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:16px;border-radius:12px;border:1px solid var(--glass);flex:1}
 
-    /* Contact */
-    .contact{margin-top:24px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:18px;border-radius:12px;border:1px solid var(--card);display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
+    /* contact */
+    .contact{margin-top:24px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:18px;border-radius:12px;border:1px solid var(--glass);display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
     .contact form{display:flex;flex-direction:column;gap:10px}
-    input,textarea,select{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit}
+    input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit}
     .biz{padding:14px;border-radius:10px;background:rgba(0,0,0,0.04)}
 
     /* footer */
@@ -99,20 +105,19 @@
       .gallery{grid-template-columns:repeat(2,1fr)}
     }
 
-    /* fade-in */
-    [data-fade]{opacity:0;transform:translateY(8px);transition:all .6s cubic-bezier(.2,.9,.2,1)}
+    /* reveal */
+    [data-fade]{opacity:0;transform:translateY(12px);transition:all .6s cubic-bezier(.2,.9,.2,1)}
     [data-fade].visible{opacity:1;transform:none}
   </style>
 </head>
 <body>
-
-  <div class="container">
+  <div class="wrap">
     <header>
       <div class="brand">
         <div class="logo">PS</div>
         <div>
           <h1>Phoenix Tech & Solar</h1>
-          <div style="color:var(--muted);font-size:13px">مکمل سولر انسٹالیشن — Residential & Commercial</div>
+          <div style="color:var(--muted);font-size:13px">پیشہ ور سولر انسٹالیشن — Residential & Commercial</div>
         </div>
       </div>
 
@@ -120,7 +125,7 @@
         <a href="#projects">پراجیکٹس</a>
         <a href="#services">سروسز</a>
         <a href="#contact">رابطہ</a>
-        <button class="cta-wh" onclick="openWhats()" title="WhatsApp">📲 WhatsApp</button>
+        <button class="btn-wh" onclick="openWhats()" title="WhatsApp">📲 WhatsApp</button>
       </nav>
     </header>
 
@@ -130,26 +135,19 @@
       <div class="shape s2" aria-hidden></div>
 
       <div class="hero-grid">
-        <div class="hero-left">
-          <h2 class="hero-title" data-fade>اب اپنے گھر یا کاروبار میں توانائی بچائیں — جدید سولر حل</h2>
-          <p class="hero-sub" data-fade>ہم پلان، سپلائی اور انسٹالیشن کرتے ہیں — پینلز، انورٹر، بیٹری اور بعد از فروخت سروس۔ مفت سائٹ سروے آج ہی بک کریں۔</p>
-
-          <div class="hero-buttons" data-fade>
-            <button class="btn-primary" onclick="scrollTo('contact')">فری سائٹ سروے بک کریں</button>
-            <a class="btn-ghost" href="#projects">ہمارے پراجیکٹس</a>
-          </div>
-
-          <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap" data-fade>
-            <div style="background:var(--card);padding:8px 10px;border-radius:999px;font-weight:700;color:var(--muted)">گارنٹی</div>
-            <div style="background:var(--card);padding:8px 10px;border-radius:999px;font-weight:700;color:var(--muted)">پری وِسٹ سروے</div>
-            <div style="background:var(--card);padding:8px 10px;border-radius:999px;font-weight:700;color:var(--muted)">مینٹیننس</div>
+        <div>
+          <h2 class="hero-title" data-fade>اپنے گھر یا کاروبار کے لیے جدید سولر حل — توانائی بچائیں، پیسہ بچائیں</h2>
+          <p class="hero-sub" data-fade>ہم پلان، سپلائی اور انسٹال کرتے ہیں — پینلز، انورٹر، بیٹری اور بعد از فروخت سروس۔ مفت سائٹ سروے آج ہی بک کریں۔</p>
+          <div class="hero-cta" data-fade>
+            <button class="btn-primary" onclick="scrollTo('contact')">فری سائٹ سروے</button>
+            <a class="btn-muted" href="#projects">ہمارے پراجیکٹس</a>
           </div>
         </div>
 
         <aside>
           <div style="display:flex;flex-direction:column;gap:12px">
             <div class="feature" data-fade>
-              <div class="icon">⚡</div>
+              <div class="ficon">⚡</div>
               <div>
                 <div style="font-weight:700">توانائی بچت</div>
                 <div style="color:var(--muted);font-size:13px">بجلی کے بل میں نمایاں کمی</div>
@@ -157,7 +155,7 @@
             </div>
 
             <div class="feature" data-fade>
-              <div class="icon">🛠️</div>
+              <div class="ficon">🛠️</div>
               <div>
                 <div style="font-weight:700">ماہر ٹیم</div>
                 <div style="color:var(--muted);font-size:13px">تجربہ کار تکنیکی عملہ</div>
@@ -170,7 +168,7 @@
                   <div style="font-weight:800;font-size:16px">100+ مکمل پراجیکٹس</div>
                   <div style="color:var(--muted);font-size:13px">ریزلٹ-اورینٹڈ</div>
                 </div>
-                <div style="font-weight:800;color:#6ee7b7">⭐ 4.9</div>
+                <div style="font-weight:800;color:var(--success)">⭐ 4.9</div>
               </div>
             </div>
 
@@ -179,25 +177,25 @@
       </div>
     </section>
 
-    <!-- Services / Features -->
-    <section id="services">
+    <!-- SERVICES -->
+    <section id="services" data-fade>
       <div class="features">
-        <div class="feature" data-fade>
-          <div class="icon">🏠</div>
+        <div class="feature">
+          <div class="ficon">🏠</div>
           <div>
             <div style="font-weight:700">ریزیڈینشل سولر</div>
-            <div style="color:var(--muted);font-size:13px">1kW — 10kW تک گھریلو سسٹمز</div>
+            <div style="color:var(--muted);font-size:13px">1kW — 10kW گھریلو سسٹمز</div>
           </div>
         </div>
-        <div class="feature" data-fade>
-          <div class="icon">🏢</div>
+        <div class="feature">
+          <div class="ficon">🏢</div>
           <div>
             <div style="font-weight:700">کمرشل سولر</div>
-            <div style="color:var(--muted);font-size:13px">فیکٹری/دفاتر کے لیے بڑے سسٹمز</div>
+            <div style="color:var(--muted);font-size:13px">بڑی چھتوں کے لیے مکمل سسٹم</div>
           </div>
         </div>
-        <div class="feature" data-fade>
-          <div class="icon">🔋</div>
+        <div class="feature">
+          <div class="ficon">🔋</div>
           <div>
             <div style="font-weight:700">بیٹری بیک اپ</div>
             <div style="color:var(--muted);font-size:13px">لی آئن / لیڈ ایسڈ اختیارات</div>
@@ -206,23 +204,20 @@
       </div>
     </section>
 
-    <!-- Projects -->
-    <section id="projects" class="projects">
-      <h3 style="margin-top:18px">حالیہ مکمل پراجیکٹس</h3>
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h3 style="margin-top:8px">حالیہ مکمل پراجیکٹس</h3>
       <div class="projects-grid" style="margin-top:12px">
-        <!-- Project 1 -->
         <div class="card-project" onclick="openModal(0)" data-fade>
           <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000" alt="Residential Solar">
           <div class="project-info">رہائشی چھت — 3kW</div>
         </div>
 
-        <!-- Project 2 -->
         <div class="card-project" onclick="openModal(1)" data-fade>
           <img src="https://images.unsplash.com/photo-1534274988759-8a73f3df7b22?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000" alt="Commercial Solar">
           <div class="project-info">کمرشل پارکنگ — 15kW</div>
         </div>
 
-        <!-- Project 3 -->
         <div class="card-project" onclick="openModal(2)" data-fade>
           <img src="https://images.unsplash.com/photo-1465250490301-3c0a5d0e3b8b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000" alt="Hybrid Solar">
           <div class="project-info">گھر + بیٹری بیک اپ</div>
@@ -230,8 +225,8 @@
       </div>
     </section>
 
-    <!-- Gallery -->
-    <section style="margin-top:18px">
+    <!-- GALLERY -->
+    <section style="margin-top:18px" data-fade>
       <h3>گیلری</h3>
       <div class="gallery" style="margin-top:10px">
         <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=000" alt="panel1">
@@ -241,27 +236,27 @@
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section style="margin-top:20px">
-      <h3>کلائنٹ کی رائے</h3>
+    <!-- TESTIMONIALS -->
+    <section style="margin-top:20px" data-fade>
+      <h3>کلائنٹس کی رائے</h3>
       <div class="testimonials">
-        <div class="testimonial" data-fade>"شاندار انسٹالیشن، بروقت اور پروفیشنل سروس۔" — احمد خان</div>
-        <div class="testimonial" data-fade>"بجلی کے بل میں واضح کمی آئی، بہت خوش ہیں۔" — سارہ بیگ</div>
+        <div class="testimonial">"شاندار انسٹالیشن، وقت پر اور پروفیشنل۔" — احمد خان</div>
+        <div class="testimonial">"بجلی کے بل میں واضح کمی، بہترین سروس۔" — سارہ بیگ</div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="contact" aria-label="Contact">
+    <!-- CONTACT -->
+    <section id="contact" class="contact" aria-label="Contact" data-fade>
       <form onsubmit="submitContact(event)">
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <input type="text" id="name" placeholder="آپ کا نام" required style="flex:1;min-width:180px">
-          <input type="tel" id="phone" placeholder="WhatsApp نمبر (92300...)" required style="width:210px">
+          <input type="text" id="name" placeholder="آپ کا نام" required style="flex:1;min-width:160px">
+          <input type="tel" id="phone" placeholder="WhatsApp نمبر (92300...)" required style="width:220px">
         </div>
         <input type="email" id="email" placeholder="ایمیل (اختیاری)">
         <textarea id="msg" rows="5" placeholder="اپنا پیغام لکھیں" required></textarea>
         <div style="display:flex;gap:10px">
           <button class="btn-primary" type="submit">پیغام بھیجیں</button>
-          <button type="button" class="btn-ghost" onclick="openWhats()">براہِ راست WhatsApp</button>
+          <button type="button" class="btn-muted" onclick="openWhats()">براہِ راست WhatsApp</button>
         </div>
       </form>
 
@@ -272,7 +267,7 @@
           <div style="font-weight:700">فوری WhatsApp</div>
           <div style="color:var(--muted);margin-top:4px" id="biz-number">+92 300 XXXXXXX</div>
         </div>
-        <div style="margin-top:12px;color:var(--muted);font-size:13px">ہم منصوبہ بندی، سپلائی اور پروفیشنل انسٹالیشن فراہم کرتے ہیں—فری مشاورت کے لیے رابطہ کریں۔</div>
+        <div style="margin-top:12px;color:var(--muted);font-size:13px">مکمل پلاننگ، سپلائی اور پروفیشنل انسٹالیشن — مفت سائٹ سروے کیلئے رابطہ کریں۔</div>
       </div>
     </section>
 
@@ -281,39 +276,40 @@
     </footer>
   </div>
 
-  <!-- Modal for project details -->
+  <!-- Project modal -->
   <div id="modal" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:9999">
-    <div style="max-width:880px;width:92%;background:#081922;padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);position:relative">
+    <div style="max-width:880px;width:92%;background:#071825;padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);position:relative">
       <button onclick="closeModal()" style="position:absolute;left:12px;top:12px;background:transparent;border:none;color:#fff;font-size:20px;cursor:pointer">✕</button>
       <div id="modal-content"></div>
     </div>
   </div>
 
   <script>
-    // ---- CONFIG: replace these ----
-    const MY_WHATSAPP = '92300XXXXXXX'; // <- replace with your WhatsApp (no +)
+    // ---- CONFIG: replace these values before publishing ----
+    const MY_WHATSAPP = '92300XXXXXXX'; // <-- replace with your WhatsApp (no '+' sign)
     const BIZ_DISPLAY = '+92 300 XXXXXXX';
-    // --------------------------------
+    // --------------------------------------------------------
 
     document.getElementById('biz-number').textContent = BIZ_DISPLAY;
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // fade-in observer
+    // Intersection reveal
     const fadeEls = document.querySelectorAll('[data-fade]');
-    const obs = new IntersectionObserver(entries=>{
+    const io = new IntersectionObserver(entries=>{
       entries.forEach(e=>{
         if(e.isIntersecting) e.target.classList.add('visible');
       });
     }, {threshold: 0.12});
-    fadeEls.forEach(el=>obs.observe(el));
+    fadeEls.forEach(el=>io.observe(el));
 
+    // Scroll helper
     function scrollTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
 
     // WhatsApp helpers
     function openWhats(){
       const name = document.getElementById('name') ? document.getElementById('name').value : '';
       const phone = document.getElementById('phone') ? document.getElementById('phone').value : '';
-      const text = encodeURIComponent(`سلام! میری دلچسپی ہے — ${name} ${phone ? '\\nفون: '+phone : ''}\\nبراہِ کرم رابطہ کریں۔`);
+      const text = encodeURIComponent(`سلام! میری دلچسپی ہے — ${name} ${phone ? '\\nفون: '+phone : ''}\\nمزید معلومات دیں۔`);
       window.open(`https://api.whatsapp.com/send?phone=${MY_WHATSAPP}&text=${text}`, '_blank');
     }
 
@@ -327,12 +323,12 @@
       window.open(`https://api.whatsapp.com/send?phone=${MY_WHATSAPP}&text=${text}`, '_blank');
     }
 
-    // Projects modal data
+    // Projects data
     const projects = [
       {
         title:'رہائشی چھت — 3kW',
         img:'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000',
-        text:'3kW رہائشی نظام، 6 پینلز، 3kW انورٹر، بیٹری آپشن۔ مکمل سیٹ اپ اور 1 سال سروس۔'
+        text:'3kW رہائشی سسٹم، 6 پینلز، 3kW انورٹر، بیٹری آپشن۔ مکمل سیٹ اپ اور مقامی سپورٹ۔'
       },
       {
         title:'کمرشل پارکنگ — 15kW',
@@ -356,7 +352,7 @@
         <p style="color:var(--muted)">${p.text}</p>
         <div style="display:flex;gap:10px;margin-top:12px">
           <button class="btn-primary" onclick="scrollTo('contact');closeModal()">پراجیکٹ پر رابطہ کریں</button>
-          <button class="btn-ghost" onclick="openWhats()">WhatsApp</button>
+          <button class="btn-muted" onclick="openWhats()">WhatsApp</button>
         </div>
       `;
       modal.style.display = 'flex';
@@ -365,12 +361,10 @@
 
     document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeModal(); });
 
-    // Lazy fade in images
+    // Lazy images fade
     document.addEventListener('DOMContentLoaded', ()=>{
       document.querySelectorAll('img').forEach(img=>{
-        if(img.complete) return;
-        img.style.opacity = 0; img.style.transition = 'opacity .6s ease';
-        img.addEventListener('load', ()=> img.style.opacity = 1);
+        if(img.complete) return; img.style.opacity=0; img.style.transition='opacity .6s ease'; img.addEventListener('load',()=> img.style.opacity=1);
       });
     });
   </script>
