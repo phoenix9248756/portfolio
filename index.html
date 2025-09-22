@@ -2,1429 +2,580 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phoenix Solution | Premium Solar Installation Services</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: #4a4a4a;
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-color: #f8f9fa;
-        }
-
-        h1, h2, h3, h4, h5 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: #1a3263;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Header & Navigation */
-        header {
-            background-color: rgba(255, 255, 255, 0.98);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-            padding: 15px 0;
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            padding: 10px 0;
-            background-color: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-icon {
-            font-size: 28px;
-            color: #e67e22;
-            margin-right: 12px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1a3263;
-        }
-
-        .logo-text span {
-            color: #e67e22;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 30px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #1a3263;
-            font-weight: 500;
-            font-size: 16px;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        nav ul li a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: #e67e22;
-            transition: width 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #e67e22;
-        }
-
-        nav ul li a:hover:after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(26, 50, 99, 0.8), rgba(26, 50, 99, 0.8)), url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1772&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding-top: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23e67e22' fill-opacity='0.1' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,224C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: bottom;
-            animation: wave 10s linear infinite;
-        }
-
-        @keyframes wave {
-            0% { transform: translateX(0) translateY(0); }
-            50% { transform: translateX(-25%) translateY(-10%); }
-            100% { transform: translateX(0) translateY(0); }
-        }
-
-        .hero-content {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 0 20px;
-            animation: fadeIn 1.5s ease-in-out;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h2 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: white;
-            line-height: 1.2;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #e67e22;
-            color: white;
-            padding: 14px 35px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn:hover {
-            background-color: #d35400;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(230, 126, 34, 0.4);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid white;
-            margin-left: 15px;
-        }
-
-        .btn-outline:hover {
-            background-color: white;
-            color: #1a3263;
-        }
-
-        /* About Section */
-        .about {
-            padding: 100px 0;
-            background-color: white;
-            position: relative;
-        }
-
-        .about::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23f8f9fa' fill-opacity='1' d='M0,192L48,197.3C96,203,192,213,288,197.3C384,181,480,139,576,138.7C672,139,768,181,864,181.3C960,181,1056,139,1152,138.7C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: center;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 15px;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 70px;
-            height: 4px;
-            background-color: #e67e22;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            max-width: 700px;
-            margin: 15px auto 0;
-            color: #666;
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .about-text {
-            flex: 1;
-            min-width: 300px;
-            padding-right: 40px;
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #1a3263;
-        }
-
-        .about-features {
-            margin-top: 30px;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: all 0.5s ease;
-        }
-
-        .feature.in-view {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .feature i {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(230, 126, 34, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #e67e22;
-            font-size: 18px;
-            margin-right: 15px;
-            transition: all 0.3s;
-        }
-
-        .feature:hover i {
-            background-color: #e67e22;
-            color: white;
-            transform: rotate(360deg);
-        }
-
-        .about-image {
-            flex: 1;
-            min-width: 300px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.8s ease;
-            position: relative;
-        }
-
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(230, 126, 34, 0.1), rgba(26, 50, 99, 0.1));
-            z-index: 1;
-            opacity: 0;
-            transition: all 0.5s ease;
-        }
-
-        .about-image:hover::before {
-            opacity: 1;
-        }
-
-        .about-image.in-view {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s;
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-            background-color: #f8f9fa;
-            position: relative;
-        }
-
-        .services::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,224C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: center;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .service-card {
-            background-color: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
-            transition: transform 0.3s, box-shadow 0.3s;
-            opacity: 0;
-            transform: translateY(30px);
-            position: relative;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 0;
-            background-color: #e67e22;
-            transition: height 0.5s ease;
-            z-index: 1;
-        }
-
-        .service-card:hover::before {
-            height: 100%;
-        }
-
-        .service-card.in-view {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-image {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .service-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .service-card:hover .service-image img {
-            transform: scale(1.1);
-        }
-
-        .service-content {
-            padding: 30px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .service-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #1a3263;
-        }
-
-        .service-content p {
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .service-content a {
-            color: #e67e22;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            transition: all 0.3s;
-        }
-
-        .service-content a i {
-            margin-left: 8px;
-            transition: transform 0.3s;
-        }
-
-        .service-content a:hover {
-            color: #d35400;
-        }
-
-        .service-content a:hover i {
-            transform: translateX(5px);
-        }
-
-        /* Portfolio Section */
-        .portfolio {
-            padding: 100px 0;
-            background-color: white;
-            position: relative;
-        }
-
-        .portfolio::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23f8f9fa' fill-opacity='1' d='M0,192L48,197.3C96,203,192,213,288,197.3C384,181,480,139,576,138.7C672,139,768,181,864,181.3C960,181,1056,139,1152,138.7C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: center;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        .portfolio-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            height: 280px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            opacity: 0;
-            transform: scale(0.95);
-            transition: all 0.8s ease;
-        }
-
-        .portfolio-item.in-view {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .portfolio-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .portfolio-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(26, 50, 99, 0.85), transparent);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: flex-start;
-            padding: 25px;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-        .portfolio-overlay h3 {
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            transform: translateY(20px);
-            transition: transform 0.5s;
-        }
-
-        .portfolio-item:hover .portfolio-overlay h3 {
-            transform: translateY(0);
-        }
-
-        .portfolio-overlay p {
-            color: #e67e22;
-            font-weight: 500;
-            transform: translateY(20px);
-            transition: transform 0.5s 0.1s;
-        }
-
-        .portfolio-item:hover .portfolio-overlay p {
-            transform: translateY(0);
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 80px 0;
-            background: linear-gradient(rgba(26, 50, 99, 0.9), rgba(26, 50, 99, 0.9)), url('https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
-            background-size: cover;
-            background-attachment: fixed;
-            color: white;
-            text-align: center;
-            position: relative;
-        }
-
-        .stats::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23e67e22' fill-opacity='0.1' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,224C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: center;
-            animation: wave 15s linear infinite;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat-item {
-            padding: 20px;
-        }
-
-        .stat-item i {
-            font-size: 40px;
-            color: #e67e22;
-            margin-bottom: 15px;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .stat-text {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 100px 0;
-            background-color: #f8f9fa;
-            position: relative;
-        }
-
-        .contact::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,224C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: center;
-        }
-
-        .contact-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
-
-        .contact-info {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            color: #1a3263;
-        }
-
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: all 0.5s ease;
-        }
-
-        .contact-detail.in-view {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .contact-detail i {
-            width: 55px;
-            height: 55px;
-            background-color: rgba(230, 126, 34, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #e67e22;
-            font-size: 20px;
-            margin-right: 15px;
-            transition: all 0.3s;
-        }
-
-        .contact-detail:hover i {
-            background-color: #e67e22;
-            color: white;
-            transform: scale(1.1);
-        }
-
-        .contact-text h4 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .contact-text p {
-            color: #666;
-        }
-
-        .contact-form {
-            flex: 1;
-            min-width: 300px;
-            background-color: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .contact-form.in-view {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .contact-form h3 {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            color: #1a3263;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #1a3263;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: #e67e22;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
-        }
-
-        .form-group textarea {
-            min-height: 140px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #1a3263;
-            color: white;
-            padding: 60px 0 20px;
-            position: relative;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23f8f9fa' fill-opacity='1' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,224C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: center;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-            margin-bottom: 30px;
-        }
-
-        .footer-section h3 {
-            color: #e67e22;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-
-        .footer-section p {
-            opacity: 0.8;
-            margin-bottom: 20px;
-            max-width: 300px;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-            color: #e67e22;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-icons a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .social-icons a:hover {
-            background-color: #e67e22;
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            padding-top: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            opacity: 0.7;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Scroll to top button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background-color: #e67e22;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            opacity: 0;
-            visibility: hidden;
-            z-index: 999;
-            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
-        }
-
-        .scroll-to-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-to-top:hover {
-            background-color: #d35400;
-            transform: translateY(-5px);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero h2 {
-                font-size: 2.8rem;
-            }
-            
-            nav ul li {
-                margin-left: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            nav ul {
-                margin-top: 20px;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            nav ul li {
-                margin: 10px 15px;
-            }
-
-            .hero h2 {
-                font-size: 2.3rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .btn {
-                margin-bottom: 10px;
-            }
-
-            .about-content, .contact-content {
-                flex-direction: column;
-            }
-
-            .about-text {
-                padding-right: 0;
-                margin-bottom: 30px;
-            }
-            
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-            
-            .scroll-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-            }
-        }
-    </style>
+    <meta name="keywords" content="Abdul Developer, portfolio, Abdullah," />
+    <meta name="description" content="Welcome to Abdul Developer . Full-Stack Web Developer and Android App Developer" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon -->
+    <link id='favicon' rel="shortcut icon" href="./assets/images/Untitled design.png" type="image/x-png">
+    <title>Abdul Web Dev</title>
 </head>
-<body>
-    <!-- Header & Navigation -->
-    <header id="header">
-        <div class="container header-content">
-            <div class="logo">
-                <i class="fas fa-fire logo-icon"></i>
-                <h1 class="logo-text">Phoenix <span>Solution</span></h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<body oncontextmenu="return false">
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h2>Premium Solar Energy Solutions</h2>
-            <p>Professional solar installation services with a commitment to quality, efficiency, and sustainability. Harness the power of the sun with our expert solutions.</p>
-            <div>
-                <a href="#contact" class="btn">Get a Free Quote</a>
-                <a href="#portfolio" class="btn btn-outline">View Our Work</a>
-            </div>
-        </div>
-    </section>
+<style>
+  .loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Us</h2>
-                <p>Learn why Phoenix Solution is the preferred choice for residential and commercial solar installations</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Expert Solar Installers with a Decade of Experience</h3>
-                    <p>At Phoenix Solution, we provide professional solar panel installation services that save you money and reduce your carbon footprint. Our mission is to bring reliable, affordable, and sustainable solar energy solutions to homes and businesses.</p>
-                    
-                    <div class="about-features">
-                        <div class="feature">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>Certified Professionals</h4>
-                                <p>Our team holds industry-leading certifications</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>Quality Materials</h4>
-                                <p>We use only premium components from trusted brands</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>Comprehensive Warranty</h4>
-                                <p>25-year warranty on products and workmanship</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <img src="data:image/jpeg;base64,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" alt="Phoenix Solution Solar Installation Team">
-                </div>
-            </div>
-        </div>
-    </section>
+.loader {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    position: relative;
+    border-width: 3px 2px 3px 2px;
+    border-style: solid dotted solid dotted;
+    border-color: #de3500 rgba(255, 255, 255,0.3) #fff rgba(151, 107, 93, 0.3);
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: 1s rotate linear infinite;
+ }
+ .loader:before , .loader:after{
+    content: '';
+    top: 0;
+    left: 0;
+    position: absolute;
+    border: 10px solid transparent;
+    border-bottom-color:#fff;
+    transform: translate(-10px, 19px) rotate(-35deg);
+  }
+ .loader:after {
+    border-color: #de3500 #0000 #0000 #0000 ;
+    transform: translate(32px, 3px) rotate(-35deg);
+  }
+   @keyframes rotate {
+    100%{    transform: rotate(360deg)}
+  }
+    
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Services</h2>
-                <p>Comprehensive solar solutions tailored to your specific needs</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-image">
-                        <img src="https://phoenix9248756.github.io/portfolio/WhatsApp%20Image%202025-09-13%20at%2010.08.31_391c8fc5.jpg" alt="Residential Solar Installation">
-                    </div>
-                    <div class="service-content">
-                        <h3>Solar Panel Installation</h3>
-                        <p>Expert Solar Panel Installation – High-quality, reliable, and efficient setup for maximum energy savings.</p>
-                      
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-image">
-                        <img src="https://phoenix9248756.github.io/portfolio/WhatsApp%20Image%202025-09-13%20at%2010.25.08_3208871a.jpg
-" alt="Commercial Solar Installation">
-                    </div>
-                    <div class="service-content">
-                        <h3>Solar Wiring & Connections</h3>
-                        <p>Safe & Professional Solar Wiring – Neat, secure, and long-lasting connections for uninterrupted power.</p>
-                   
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-image">
-                        <img src="https://phoenix9248756.github.io/portfolio/WhatsApp%20Image%202025-09-13%20at%2010.32.25_bb30ad95.jpg
-" alt="Solar Maintenance">
-                    </div>
-                    <div class="service-content">
-                        <h3>Inverter Installation</h3>
-                        <p>Advanced Inverter Setup – Smooth integration for consistent and efficient solar energy conversion.</p>
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Portfolio Section -->
-    <section class="portfolio" id="portfolio">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Projects</h2>
-                <p>Showcasing our premium solar installations for residential and commercial clients</p>
-            </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1752&q=80" alt="Modern Home Installation">
-                    <div class="portfolio-overlay">
-                        <h3>Modern Home Installation</h3>
-                        <p>Residential Solar</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1752&q=80" alt="Commercial Rooftop">
-                    <div class="portfolio-overlay">
-                        <h3>Commercial Rooftop</h3>
-                        <p>Business Solar</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://www.spiritenergy.co.uk/hubfs/Images/social-suggested-images/blog.spiritenergy.co.ukhubfsImagescase%20studiescommercialpvLawon-Smith%20Groundmount.jpg" alt="Ground Mount System">
-                    <div class="portfolio-overlay">
-                        <h3>Ground Mount System</h3>
-                        <p>Large Scale Installation</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://cdn10.bigcommerce.com/s-3yc5xwvk/product_images/uploaded_images/louisiana-ground-mount.jpg" alt="Solar Farm">
-                    <div class="portfolio-overlay">
-                        <h3>Solar Farm</h3>
-                        <p>Utility Scale Project</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1772&q=80" alt="Eco-Friendly Home">
-                    <div class="portfolio-overlay">
-                        <h3>Eco-Friendly Home</h3>
-                        <p>Full Home Solution</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1487621167305-5d248087c724?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1752&q=80" alt="Modern Installation">
-                    <div class="portfolio-overlay">
-                        <h3>Modern Installation</h3>
-                        <p>Residential Project</p>
-                    </div>
-                </div>
+
+</style>
+<div class="loader-wrapper">
+  <span class="loader"></span>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      // Show loader for 4 seconds
+      setTimeout(function() {
+          document.querySelector('.loader-wrapper').style.display = 'none';
+          document.querySelector('.content').style.display = 'block';
+      }, 2000); // 4 seconds (4000 milliseconds)
+  });
+</script>
+
+
+<!-- navbar starts -->
+<header>
+        <a href="/" class="logo"><i class="fas fa-laptop-code"></i>
+          ABDUL WEB DEV</a>
+
+        <div id="menu" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul>
+            <li><a class="active" href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Plan</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Seo</a></li>
+            </ul>
+        </nav>
+</header>
+<!-- navbar ends -->
+
+
+<!-- hero section starts -->
+<section class="home" id="home">
+    <div id="particles-js"></div>
+
+    <div class="content">
+    <h2>Hi There,<br/> I'm Abdul   <span>Developer</span></h2>
+    <p>i am into <span class="typing-text"></span></p>
+    <a href="#about" class="btn"><span>About Me</span>
+      <i class="fas fa-arrow-circle-down"></i>
+    </a>
+    <div class="socials">
+      <ul class="social-icons">
+        <li><a class="whatsapp" aria-label="WhatsApp" href="https://wa.me/+923192341455" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+        <li><a class="github" aria-label="GitHub" href="#" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tiktok" viewBox="0 0 16 16">
+          <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/>
+        </svg></a></li>
+        <li><a class="facebook" aria-label="Facebook" href="" target="_blank"><i class="fab fa-facebook"></i></a></li>
+        <li><a class="gmail" aria-label="Gmail" href="mailto:abduldevtech@gmail.com" target="_blank"><i class="far fa-envelope"></i></a></li>
+
+      </ul>
+      </div>
+    </div>
+    <br>
+<div class="image">
+    <img draggable="false" class="tilt" src="/ab.png" alt="">
+</div>
+</section>
+<!-- hero section ends -->
+
+
+<!--whatsapp section-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<a href="https://wa.me/+923192341455" class="float" target="_blank">
+<i class="fa fa-whatsapp my-float"></i>
+</a>
+<!-- about section starts -->
+<section class="about" id="about">
+    <h2 class="heading"><i class="fas fa-user-alt"></i> About <span>Me</span></h2>
+    
+    <div class="row">
+
+    <div class="image">
+        <img draggable="false" src="/ab.png" alt="">
+    </div>
+    <div class="content">
+        <h3>I'm Abdul Developer</h3>
+        <span class="tag">Full Stack Developer</span>
+        
+        <p>Greetings,
+
+          I am Abdul Developer, a proficient web developer with expertise in both frontend and backend development. My skills encompass a wide array of technologies including HTML, CSS, JavaScript, React, WordPress, and PHP. With a keen eye for design and a dedication to delivering unique and innovative solutions, I strive to create engaging and user-friendly web experiences that meet the needs of clients and end-users alike.
+          
+          Best regards,
+          
+          Abdul Developer
+          
+          
+          
+          
+          </p>
+        
+        <div class="box-container">
+         
+            <div class="box">
+              <p><span> email : </span>abduldevtech@gmail.com</p>
+              <p><span> place : </span> Malir Karachi</p>
             </div>
         </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <i class="fas fa-solar-panel"></i>
-                    <div class="stat-number" data-count="25">0</div>
-                    <div class="stat-text">Installations Completed</div>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-house-user"></i>
-                    <div class="stat-number" data-count="20">0</div>
-                    <div class="stat-text">Happy Homeowners</div>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-building"></i>
-                    <div class="stat-number" data-count="5">0</div>
-                    <div class="stat-text">Commercial Projects</div>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-medal"></i>
-                    <div class="stat-number" data-count="03">0</div>
-                    <div class="stat-text">Years of Experience</div>
-                </div>
-            </div>
+        
+        <div class="resumebtn">
+            <a href="#" target="_blank" class="btn"><span>Resume</span>
+                <i class="fas fa-chevron-right"></i>
+            </a>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contact Us</h2>
-                <p>Get in touch for a free consultation and quote</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Get In Touch</h3>
-                    <div class="contact-detail">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div class="contact-text">
-                            <h4>Location</h4>
-                            <p>wazirabad,punjab,pakistan</p>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <i class="fas fa-phone"></i>
-                        <div class="contact-text">
-                            <h4>Phone</h4>
-                            <p>03435647387</p>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <i class="fas fa-envelope"></i>
-                        <div class="contact-text">
-                            <h4>Email</h4>
-                            <p>phoenixsolution9248@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <i class="fas fa-clock"></i>
-                        <div class="contact-text">
-                            <h4>Business Hours</h4>
-                            <p>Monday-Friday: 8am - 6pm</p>
-                            <p>Saturday: 9am - 1pm</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <h3>Send Us a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
+    </div>
+    </div>
+</section>
+<!-- about section ends -->
+
+<!-- skills section starts -->
+<section class="skills" id="skills">
+
+    <h2 class="heading"><i class="fas fa-laptop-code"></i> Skills & <span>Abilities</span></h2>
+
+    <div class="container">
+          <div class="row" id="skillsContainer">
+
+           
+
+      </div>
+</div>
+</section>
+<!-- skills section ends -->
+
+
+<!-- education section ends -->
+
+
+<!-- work project section starts -->
+<section class="work" id="work">
+
+  <h2 class="heading"><i class="fas fa-laptop-code"></i> Projects <span>Made</span></h2>
+
+  <div class="box-container">
+
+   
+
+</div>
+
+<div class="viewall">
+  <a href="/projects" class="btn"><span>View All</span>
+    <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+
+</section>
+<!-- work project section ends -->
+
+<!-- experience section starts -->
+<section class="experience" id="experience">
+
+  <h2 class="heading"><i class="fas fa-briefcase"></i> Experience </h2>
+
+  <div class="timeline">
+
+    <div class="container right">
+      <div class="content">
+        <div class="tag">
+          <h2>Web Development</h2>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Phoenix Solution</h3>
-                    <p>Providing premium solar installation services with a commitment to quality, efficiency, and sustainability.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#portfolio">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#services">Residential Solar</a></li>
-                        <li><a href="#services">Commercial Solar</a></li>
-                        <li><a href="#services">Maintenance & Repair</a></li>
-                        <li><a href="#services">Consultation</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 Phoenix Solution Solar. All rights reserved.</p>
-            </div>
+        <div class="desc">
+            <h3>Web Developer | Internship</h3>
+            <p>June 2022 - Aug 2023</p>
         </div>
-    </footer>
-
-    <!-- Scroll to top button -->
-    <div class="scroll-to-top">
-        <i class="fas fa-arrow-up"></i>
+      </div>
     </div>
 
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            const scrollTop = document.querySelector('.scroll-to-top');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-            
-            if (window.scrollY > 500) {
-                scrollTop.classList.add('active');
-            } else {
-                scrollTop.classList.remove('active');
-            }
-        });
+    <div class="container left">
+      <div class="content">
+        <div class="tag">
+          <h2>Freelancer</h2>
+        </div>
+        <div class="desc">
+            <h3>Web Developer | Freelancer</h3>
+            <p>June 2022 - Countinew</p>
+        </div>
+      </div>
+    </div>
 
-        // Scroll to top functionality
-        document.querySelector('.scroll-to-top').addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+    <div class="container right">
+      <div class="content">
+        <div class="tag">
+          <h2>Graphices Designer</h2>
+        </div>
+        <div class="desc">
+            <h3>Graphices Designer | Internship</h3>
+            <p>May 2020 - June 2022</p>
+        </div>
+      </div>
+    </div>
 
-        // Animation for elements when they come into view
-        document.addEventListener('DOMContentLoaded', function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                        
-                        // Animate stats counting
-                        if (entry.target.classList.contains('stat-item')) {
-                            const statNumber = entry.target.querySelector('.stat-number');
-                            const target = parseInt(statNumber.getAttribute('data-count'));
-                            let count = 0;
-                            const duration = 2000; // duration in ms
-                            const frameRate = 1000/60; // 60fps
-                            const totalFrames = duration / frameRate;
-                            const increment = target / totalFrames;
-                            
-                            const timer = setInterval(() => {
-                                count += increment;
-                                if (count >= target) {
-                                    count = target;
-                                    clearInterval(timer);
-                                }
-                                statNumber.textContent = Math.round(count);
-                            }, frameRate);
-                        }
-                    }
-                });
-            }, { threshold: 0.1 });
+    
+
+
+    <div class="container left">
+      <div class="content">
+        <div class="tag">
+          <h2>Blog post</h2>
+        </div>
+        <div class="desc">
+            <h3>Web Development & SEO | Internship</h3>
             
-            // Observe elements for animation
-            document.querySelectorAll('.about-image, .service-card, .portfolio-item, .stat-item, .feature, .contact-detail, .contact-form').forEach(el => {
-                observer.observe(el);
-            });
-            
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('nav a, .btn-outline').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-            
-            // Form submission
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your message! We will get back to you soon.');
-                this.reset();
-            });
-        });
-    </script>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+</div>
+
+</section>
+
+
+<section class="education" id="education">
+
+  <h1 class="heading"><i class="fas fa-graduation-cap"></i> Price <span>Table</span></h1>
+
+  <!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    
+    body {
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .custom-container {
+      max-width: 1200px;
+      margin: 20px auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    
+    .custom-column {
+      width: calc(33.33% - 20px);
+      margin-bottom: 40px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .custom-column:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .custom-price-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .custom-header {
+      background-color: #007bff;
+      color: #fff;
+      font-size: 24px;
+      padding: 20px;
+      margin: 0;
+      text-align: center;
+    }
+    
+    .custom-price {
+      font-size: 36px;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+      padding: 20px 0;
+      margin: 0;
+    }
+    
+    .custom-feature {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .custom-buy-button {
+      background-color: #28a745;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 18px;
+      display: block;
+      margin: 20px auto;
+      transition: background-color 0.3s ease;
+    }
+    
+    .custom-buy-button:hover {
+      background-color: #218838;
+    }
+
+    .animated-card {
+      animation: bounceIn 1s;
+    }
+
+    @media only screen and (max-width: 768px) {
+      .custom-column {
+        width: calc(50% - 20px);
+      }
+    }
+    
+    @media only screen and (max-width: 480px) {
+      .custom-column {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+ 
+<div class="custom-container">
+  <div class="custom-column animated-card animate__animated animate__bounceIn">
+    <h2 class="custom-header">Basic</h2>
+    <p class="custom-price">$20.99 / year</p>
+    <ul class="custom-price-list">
+      <li class="custom-feature">.Site / .Website Domain</li>
+      <li class="custom-feature">1 Year Domain, Hosting</li>
+      <li class="custom-feature">Ptc site</li>
+      <li class="custom-feature">100% work</li>
+    </ul>
+    <a href="https://wa.me/+923216625196" class="custom-buy-button">Buy Now</a>
+  </div>
+  
+  <div class="custom-column animated-card animate__animated animate__bounceIn">
+    <h2 class="custom-header">Pro</h2>
+    <p class="custom-price">$44.99 / year</p>
+    <ul class="custom-price-list">
+      <li class="custom-feature">.online/ .fun/ .shop / .site Domain</li>
+      <li class="custom-feature">1 Year Domain, Hosting</li>
+      <li class="custom-feature">ptc/auto mining</li>
+      <li class="custom-feature">100% working</li>
+    </ul>
+    <a href="https://wa.me/+923216625196" class="custom-buy-button">Buy Now</a>
+  </div>
+  
+  <div class="custom-column animated-card animate__animated animate__bounceIn">
+    <h2 class="custom-header">Premium</h2>
+    <p class="custom-price">$89.99 / year</p>
+    <ul class="custom-price-list">
+      <li class="custom-feature">.com / .net /.pk/ .com.pk/ Doamins</li>
+      <li class="custom-feature">Ptc / Auto Mining / E comrence Store / Article site/</li>
+      <li class="custom-feature">1 Year Domain, Hosting+ Cpnal Access</li>
+      <li class="custom-feature">100% Working</li>
+    </ul>
+    <a href="https://wa.me/+923216625196" class="custom-buy-button">Buy Now</a>
+  </div>
+</div>
+
 </body>
-    <!-- WhatsApp Floating Button -->
-<a href="https://wa.me/+923126247387" class="whatsapp-float" target="_blank">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
-<!-- CSS for Floating WhatsApp Button -->
-<style>
-.whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 20px;
-    left: 20px;
-    background-color: #25d366;
-    color: white;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 5px #999;
-    z-index: 100;
-}
-.whatsapp-float i {
-    margin-top: 15px;
-}
-.whatsapp-float:hover {
-    background-color: #20b358;
-}
-</style>
-
 </html>
 
 
+<br><br>
+</section>
+<!-- experience section ends -->
+<style>
+  .text-with-stroke {
+  font-size: 20px; /* Adjust the font size as needed */
+  font-weight: bold; /* Adjust the font weight as needed */
+  color: #ffffff; /* Color of the text */
+  text-shadow: -1px -1px 0 #ff0000, 1px -1px 0 #ff0000, -1px 1px 0 #ff0000, 1px 1px 0 #ff0000; /* Stroke effect */
+}
+.text-with-stroke1 {
+  font-size: 17px; /* Adjust the font size as needed */
+  font-weight: bold; /* Adjust the font weight as needed */
+  color: #000000; /* Color of the text */
+}
+
+</style>
+<!-- contact section starts -->
+<section class="contact" id="contact">
+  
+  <h2 class="heading"> I Will Index Your Site on Google  <span>With Seo Ranking System</span></h2>
+
+  <div class="container">
+    <div class="content">
+      <div class="image-box">
+        <img draggable="false" src="https://ahrefs.com/blog/wp-content/uploads/2019/04/blog-how-to-get-google-to-index-your-site-400x200.png" alt="">
+      </div>
+    <form id="contact-form">
+      
+      <div class="form-group">
+        <div class="field">
+          <h1 class="text-with-stroke">
+            I Will Index Your Site on Google With Seo Ranking System
+          </h1>   
+        </div>
+        <div class="field">
+          
+          <h1 class="text-with-stroke1">
+           
+              After oder accept  your site will be show on google after 24 hour to 48 hour
+           
+          </h1>
+        </div>
+        <div class="field">
+        <h1 class="text-with-stroke1">
+          Then We Start Applying Ideas
+        </h1>
+           
+          
+        </div>
+        <div class="message">
+        <h1 class="text-with-stroke1">
+          After oder accept  your site will be show on google after 24 hour to 48 hour
+
+        </h1>
+        </div>
+        </div>
+      
+    </form>
+  </div>
+  </div>
+</section>
+<!-- contact section ends -->
 
 
+<!-- footer section starts -->
+<section class="footer">
+
+  <div class="box-container">
+
+      <div class="box">
+          <h3>Abdul Developer Portfolio</h3>
+          <p>Thank you for visiting my personal portfolio website. Connect with me over socials. <br/> <br/> Keep Rising 🚀. Connect with me over live chat!</p>
+      </div>
+
+      <div class="box">
+          <h3>quick linA.B</h3>
+          <a href="#home"><i class="fas fa-chevron-circle-right"></i> home</a>
+          <a href="#about"><i class="fas fa-chevron-circle-right"></i> about</a>
+          <a href="#skills"><i class="fas fa-chevron-circle-right"></i> skills</a>
+          <a href="#education"><i class="fas fa-chevron-circle-right"></i> education</a>
+          <a href="#work"><i class="fas fa-chevron-circle-right"></i> work</a>
+          <a href="#experience"><i class="fas fa-chevron-circle-right"></i> experience</a>
+      </div>
+
+      <div class="box">
+          <h3>contact info</h3>
+          <p> <i class="fas fa-phone"></i>03192341455</p>
+          <p> <i class="fas fa-envelope"></i>abduldevtech@gmail.com</p>
+          <p> <i class="fas fa-map-marked-alt"></i>Malir Karachi</p>
+          <div class="share">
+
+              <a href="#" class="fab fa-linkedin" aria-label="LinkedIn" target="_blank"></a>
+              <a href="#" class="fab fa-github" aria-label="GitHub" target="_blank"></a>
+              <a href="#" class="fas fa-envelope" aria-label="Mail" target="_blank"></a>
+              <a href="#" class="fab fa-twitter" aria-label="Twitter" target="_blank"></a>
+              <a href="#" class="fab fa-telegram-plane" aria-label="Telegram" target="_blank"></a>
+          </div>
+      </div>
+  </div>
+
+  <h1 class="credit">Designed with <i class="fa fa-heart pulse"></i> by <a href="#"> Abdul Developer</a></h1>
+
+</section>
+<!-- footer section ends -->
 
 
+<!-- scroll top btn -->
+<a href="#home" aria-label="ScrollTop" class="fas fa-angle-up" id="scroll-top"></a>
+<!-- scroll back to top -->
 
 
+<!-- ==== ALL MAJOR JAVASCRIPT CDNS STARTS ==== -->
+<!-- jquery cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<!-- typed.js cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js" integrity="sha512-1KbKusm/hAtkX5FScVR5G36wodIMnVd/aP04af06iyQTkD17szAMGNmxfNH+tEuFp3Og/P5G32L1qEC47CZbUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<!-- particle.js linA.B -->
+<script src="./assets/js/particles.min.js"></script>
+<script src="./assets/js/app.js"></script>
 
+<!-- vanilla tilt.js linA.B -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js" integrity="sha512-SttpKhJqONuBVxbRcuH0wezjuX+BoFoli0yPsnrAADcHsQMW8rkR84ItFHGIkPvhnlRnE2FaifDOUw+EltbuHg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<!-- scroll reveal anim -->
+<script src="https://unpkg.com/scrollreveal"></script>
 
+<script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"
+    ></script>
 
+<!-- ==== ALL MAJOR JAVASCRIPT CDNS ENDS ==== -->
+
+<script src="./assets/js/script.js"></script>
+
+</body>
+</html>
