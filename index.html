@@ -1,4 +1,4 @@
-DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,6 +24,31 @@ DOCTYPE html>
             --gray: #222222;
             --light-gray: #333333;
             --white: #ffffff;
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --card-bg: #111111;
+            --header-bg: rgba(0, 0, 0, 0.95);
+            --border-color: rgba(0, 102, 255, 0.3);
+            --shadow-color: rgba(0, 102, 255, 0.1);
+            --transition-speed: 0.5s;
+        }
+
+        /* Light Theme Variables */
+        .light-theme {
+            --primary-blue: #0066ff;
+            --dark-blue: #0044cc;
+            --light-blue: #3399ff;
+            --black: #f8f9fa;
+            --dark-gray: #e9ecef;
+            --gray: #dee2e6;
+            --light-gray: #ced4da;
+            --white: #212529;
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --card-bg: #ffffff;
+            --header-bg: rgba(248, 249, 250, 0.95);
+            --border-color: rgba(0, 102, 255, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.1);
         }
 
         html {
@@ -32,10 +57,12 @@ DOCTYPE html>
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--black);
-            color: var(--white);
+            background-color: var(--bg-color);
+            color: var(--text-color);
             overflow-x: hidden;
             line-height: 1.6;
+            transition: background-color var(--transition-speed) ease, 
+                        color var(--transition-speed) ease;
         }
 
         /* Background Animations */
@@ -55,6 +82,11 @@ DOCTYPE html>
             background: radial-gradient(circle, var(--primary-blue) 0%, transparent 70%);
             opacity: 0.1;
             animation: float 20s infinite linear;
+            transition: opacity var(--transition-speed) ease;
+        }
+
+        .light-theme .floating-shapes {
+            opacity: 0.08;
         }
 
         .shape-1 {
@@ -88,6 +120,11 @@ DOCTYPE html>
             position: absolute;
             opacity: 0.05;
             animation: floatElement 15s infinite ease-in-out;
+            transition: opacity var(--transition-speed) ease;
+        }
+
+        .light-theme .floating-element {
+            opacity: 0.08;
         }
 
         .floating-triangle {
@@ -134,6 +171,13 @@ DOCTYPE html>
             z-index: -1;
             opacity: 0.5;
             animation: gridMove 20s linear infinite;
+            transition: opacity var(--transition-speed) ease;
+        }
+
+        .light-theme .grid-lines {
+            background-image: 
+                linear-gradient(to right, rgba(0, 102, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 102, 255, 0.08) 1px, transparent 1px);
         }
 
         /* New animation: Particle effects */
@@ -220,18 +264,18 @@ DOCTYPE html>
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0.95);
+            background-color: var(--header-bg);
             z-index: 1000;
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 102, 255, 0.3);
+            border-bottom: 1px solid var(--border-color);
             transition: all 0.3s;
             animation: slideDown 0.8s ease-out;
         }
 
         header.scrolled {
             padding: 10px 5%;
-            background-color: rgba(0, 0, 0, 0.98);
-            box-shadow: 0 5px 20px rgba(0, 102, 255, 0.1);
+            background-color: var(--header-bg);
+            box-shadow: 0 5px 20px var(--shadow-color);
         }
 
         @keyframes slideDown {
@@ -264,6 +308,7 @@ DOCTYPE html>
             overflow: hidden;
             position: relative;
             animation: logoGlow 3s infinite alternate;
+            transition: all var(--transition-speed) ease;
         }
 
         @keyframes logoGlow {
@@ -294,7 +339,7 @@ DOCTYPE html>
         .logo-text {
             font-size: 1.8rem;
             font-weight: 800;
-            background: linear-gradient(to right, var(--white), var(--primary-blue));
+            background: linear-gradient(to right, var(--text-color), var(--primary-blue));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -338,6 +383,86 @@ DOCTYPE html>
             }
         }
 
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: themeToggleGlow 3s infinite alternate;
+        }
+
+        @keyframes themeToggleGlow {
+            0% {
+                box-shadow: 0 0 5px var(--shadow-color);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(0, 102, 255, 0.3);
+            }
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-3px) scale(1.05);
+            border-color: var(--primary-blue);
+        }
+
+        .theme-toggle i {
+            font-size: 1.3rem;
+            color: var(--primary-blue);
+            transition: all 0.5s ease;
+            position: absolute;
+        }
+
+        .theme-toggle .fa-sun {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+
+        .theme-toggle .fa-moon {
+            opacity: 0;
+            transform: rotate(-90deg);
+        }
+
+        .light-theme .theme-toggle .fa-sun {
+            opacity: 0;
+            transform: rotate(90deg);
+        }
+
+        .light-theme .theme-toggle .fa-moon {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 102, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .theme-toggle:hover::before {
+            transform: translateX(100%);
+        }
+
         nav ul {
             display: flex;
             list-style: none;
@@ -345,7 +470,7 @@ DOCTYPE html>
         }
 
         nav a {
-            color: var(--white);
+            color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
             font-size: 1.1rem;
@@ -484,7 +609,7 @@ DOCTYPE html>
         .hero-description {
             font-size: 1.2rem;
             margin-bottom: 40px;
-            color: #cccccc;
+            color: var(--light-gray);
             max-width: 600px;
             animation: fadeInUp 1s ease-out 0.6s both;
             position: relative;
@@ -701,7 +826,7 @@ DOCTYPE html>
         .about-text p {
             font-size: 1.1rem;
             margin-bottom: 20px;
-            color: #cccccc;
+            color: var(--light-gray);
             animation: paragraphReveal 0.5s ease-out forwards;
             opacity: 0;
         }
@@ -739,6 +864,11 @@ DOCTYPE html>
             animation: skillAppear 0.5s ease-out forwards;
             opacity: 0;
             transform: scale(0.8);
+        }
+
+        .light-theme .skill {
+            background-color: rgba(0, 102, 255, 0.05);
+            border: 1px solid rgba(0, 102, 255, 0.2);
         }
 
         .skill:nth-child(1) { animation-delay: 0.1s; }
@@ -815,7 +945,7 @@ DOCTYPE html>
             object-fit: cover;
             border-radius: 50%;
             padding: 5px;
-            background-color: var(--black);
+            background-color: var(--bg-color);
             transition: transform 0.5s;
         }
 
@@ -868,6 +998,12 @@ DOCTYPE html>
             margin-top: 30px;
         }
 
+        .light-theme .code-container {
+            background-color: #f1f3f5;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
         @keyframes codeFloat {
             0%, 100% {
                 transform: translateY(0);
@@ -883,6 +1019,10 @@ DOCTYPE html>
             display: flex;
             align-items: center;
             gap: 10px;
+        }
+
+        .light-theme .code-header {
+            background-color: #e9ecef;
         }
 
         .code-dot {
@@ -960,7 +1100,7 @@ DOCTYPE html>
         }
 
         .project-card {
-            background-color: var(--dark-gray);
+            background-color: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
             transition: transform 0.5s, box-shadow 0.5s;
@@ -968,6 +1108,10 @@ DOCTYPE html>
             opacity: 0;
             transform: translateY(50px);
             animation: cardFloat 6s ease-in-out infinite;
+        }
+
+        .light-theme .project-card {
+            box-shadow: 0 5px 15px var(--shadow-color);
         }
 
         @keyframes cardFloat {
@@ -994,6 +1138,10 @@ DOCTYPE html>
             animation: none;
         }
 
+        .light-theme .project-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.15);
+        }
+
         .project-image {
             height: 200px;
             background: linear-gradient(45deg, var(--dark-gray), var(--gray));
@@ -1002,6 +1150,10 @@ DOCTYPE html>
             align-items: center;
             overflow: hidden;
             position: relative;
+        }
+
+        .light-theme .project-image {
+            background: linear-gradient(45deg, #e9ecef, #dee2e6);
         }
 
         .project-image::before {
@@ -1056,7 +1208,7 @@ DOCTYPE html>
         .project-title {
             font-size: 1.5rem;
             margin-bottom: 10px;
-            color: var(--white);
+            color: var(--text-color);
             position: relative;
             display: inline-block;
         }
@@ -1077,7 +1229,7 @@ DOCTYPE html>
         }
 
         .project-description {
-            color: #cccccc;
+            color: var(--light-gray);
             margin-bottom: 20px;
         }
 
@@ -1177,7 +1329,7 @@ DOCTYPE html>
         }
 
         .timeline-content {
-            background-color: var(--dark-gray);
+            background-color: var(--card-bg);
             padding: 25px;
             border-radius: 10px;
             border-left: 4px solid var(--primary-blue);
@@ -1224,7 +1376,7 @@ DOCTYPE html>
         }
 
         .timeline-desc {
-            color: #cccccc;
+            color: var(--light-gray);
             font-size: 0.95rem;
         }
 
@@ -1236,7 +1388,7 @@ DOCTYPE html>
             height: 20px;
             background-color: var(--primary-blue);
             border-radius: 50%;
-            border: 4px solid var(--black);
+            border: 4px solid var(--bg-color);
             z-index: 1;
             animation: markerPulse 2s infinite;
         }
@@ -1274,6 +1426,10 @@ DOCTYPE html>
             opacity: 0;
             transform: translateX(-30px);
             animation: contactItemAppear 0.8s forwards;
+        }
+
+        .light-theme .contact-item {
+            background-color: rgba(0, 102, 255, 0.05);
         }
 
         .contact-item:nth-child(1) { animation-delay: 0.1s; }
@@ -1321,11 +1477,15 @@ DOCTYPE html>
 
         .contact-form {
             flex: 1;
-            background-color: var(--dark-gray);
+            background-color: var(--card-bg);
             padding: 40px;
             border-radius: 10px;
             border: 1px solid rgba(0, 102, 255, 0.2);
             animation: formGlow 3s infinite alternate;
+        }
+
+        .light-theme .contact-form {
+            box-shadow: 0 0 30px rgba(0, 102, 255, 0.1);
         }
 
         @keyframes formGlow {
@@ -1364,13 +1524,19 @@ DOCTYPE html>
         .form-control {
             width: 100%;
             padding: 15px;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(0, 102, 255, 0.3);
             border-radius: 5px;
-            color: white;
+            color: var(--text-color);
             font-family: 'Poppins', sans-serif;
             font-size: 1rem;
             transition: all 0.3s;
+        }
+
+        .light-theme .form-control {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            color: #212529;
         }
 
         .form-control:focus {
@@ -1378,6 +1544,10 @@ DOCTYPE html>
             border-color: var(--primary-blue);
             box-shadow: 0 0 10px rgba(0, 102, 255, 0.5);
             transform: translateY(-2px);
+        }
+
+        .light-theme .form-control:focus {
+            background-color: white;
         }
 
         .submit-btn {
@@ -1437,6 +1607,10 @@ DOCTYPE html>
             overflow: hidden;
         }
 
+        .light-theme footer {
+            background-color: #e9ecef;
+        }
+
         .footer-logo-container {
             display: flex;
             justify-content: center;
@@ -1479,7 +1653,7 @@ DOCTYPE html>
         .footer-brand {
             font-size: 2rem;
             font-weight: 800;
-            background: linear-gradient(to right, var(--white), var(--primary-blue));
+            background: linear-gradient(to right, var(--text-color), var(--primary-blue));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -1496,7 +1670,7 @@ DOCTYPE html>
         }
 
         .footer-text {
-            color: #cccccc;
+            color: var(--light-gray);
             margin-bottom: 30px;
             max-width: 600px;
             margin-left: auto;
@@ -1551,6 +1725,11 @@ DOCTYPE html>
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             animation: copyrightAppear 1s ease-out 0.5s both;
+        }
+
+        .light-theme .copyright {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: #666666;
         }
 
         /* Scroll progress bar */
@@ -1636,6 +1815,16 @@ DOCTYPE html>
         }
 
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+            
+            .hero-image {
+                width: 45%;
+            }
+        }
+
         @media (max-width: 992px) {
             .hero-title {
                 font-size: 3.5rem;
@@ -1673,6 +1862,10 @@ DOCTYPE html>
             .timeline-marker {
                 left: 30px;
             }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1681,7 +1874,7 @@ DOCTYPE html>
                 top: 80px;
                 left: 0;
                 width: 100%;
-                background-color: rgba(0, 0, 0, 0.95);
+                background-color: var(--header-bg);
                 flex-direction: column;
                 align-items: center;
                 padding: 20px 0;
@@ -1690,7 +1883,7 @@ DOCTYPE html>
                 opacity: 0;
                 transition: all 0.5s;
                 z-index: 999;
-                border-bottom: 1px solid rgba(0, 102, 255, 0.3);
+                border-bottom: 1px solid var(--border-color);
             }
             
             nav ul.active {
@@ -1702,12 +1895,30 @@ DOCTYPE html>
                 display: block;
             }
             
+            .theme-toggle {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .header-controls {
+                gap: 15px;
+            }
+            
             .hero-title {
                 font-size: 2.8rem;
             }
             
             .section-title {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+            }
+            
+            .hero {
+                padding: 100px 5% 50px;
+            }
+            
+            .profile-container {
+                width: 250px;
+                height: 250px;
             }
         }
 
@@ -1729,8 +1940,62 @@ DOCTYPE html>
             }
             
             .profile-container {
-                width: 250px;
-                height: 250px;
+                width: 200px;
+                height: 200px;
+            }
+            
+            .code-container {
+                max-width: 100%;
+            }
+            
+            .contact-form {
+                padding: 25px;
+            }
+            
+            .timeline-content {
+                padding: 20px;
+            }
+            
+            .footer-brand {
+                font-size: 1.5rem;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .brand-name {
+                font-size: 0.9rem;
+            }
+            
+            header {
+                padding: 10px 5%;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .skill {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .social-link {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -1757,7 +2022,6 @@ DOCTYPE html>
     <header id="header">
         <div class="logo-container">
             <div class="logo-image">
-                <!-- Replace with your logo image -->
                 <img src="logo.png.png" alt="Phoenix Solutions Logo" id="logo-img">
             </div>
             <div>
@@ -1766,8 +2030,16 @@ DOCTYPE html>
             </div>
         </div>
         
-        <div class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
+        <div class="header-controls">
+            <!-- Theme Toggle Button -->
+            <div class="theme-toggle" id="themeToggle">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </div>
+            
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
         
         <nav>
@@ -1784,21 +2056,21 @@ DOCTYPE html>
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1 class="hero-title">Hi, I'm Hafiz Faizan</h1>
+            <h1 class="hero-title">Hi, I'm <span>Hafiz Faizan</span></h1>
             <h2 class="hero-subtitle">Frontend Web Developer</h2>
             <p class="hero-description">I create stunning, interactive web experiences with cutting-edge animations and responsive designs. Welcome to Phoenix Solutions - where ideas transform into digital reality.</p>
             <a href="#projects" class="cta-button">View My Work</a>
         </div>
         <div class="hero-image">
             <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="200" cy="200" r="180" fill="none" stroke="#0066ff" stroke-width="4"/>
-                <path d="M100,200 Q200,100 300,200 T500,200" fill="none" stroke="#0066ff" stroke-width="3" stroke-dasharray="10,5">
+                <circle cx="200" cy="200" r="180" fill="none" stroke="var(--primary-blue)" stroke-width="4"/>
+                <path d="M100,200 Q200,100 300,200 T500,200" fill="none" stroke="var(--primary-blue)" stroke-width="3" stroke-dasharray="10,5">
                     <animate attributeName="stroke-dashoffset" from="0" to="100" dur="5s" repeatCount="indefinite"/>
                 </path>
-                <circle cx="200" cy="200" r="100" fill="none" stroke="#3399ff" stroke-width="2" stroke-dasharray="5,5">
+                <circle cx="200" cy="200" r="100" fill="none" stroke="var(--light-blue)" stroke-width="2" stroke-dasharray="5,5">
                     <animate attributeName="r" from="90" to="110" dur="3s" repeatCount="indefinite"/>
                 </circle>
-                <polygon points="200,100 250,250 150,250" fill="none" stroke="#0044cc" stroke-width="3">
+                <polygon points="200,100 250,250 150,250" fill="none" stroke="var(--dark-blue)" stroke-width="3">
                     <animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="10s" repeatCount="indefinite"/>
                 </polygon>
             </svg>
@@ -1831,12 +2103,9 @@ DOCTYPE html>
             
             <div class="about-image">
                 <div class="profile-container">
-                    <!-- Replace with your picture -->
                     <div class="profile-placeholder" id="profile-pic">
                         <i class="fas fa-user"></i>
                     </div>
-                    <!-- After adding your picture, replace the above with: -->
-                    <!-- <img src="https://phoenix9248756.github.io/phoenixsolution/my%20pick.jpg" alt="Hafiz Faizan"> -->
                 </div>
                 
                 <div class="profile-text">
@@ -1849,15 +2118,15 @@ DOCTYPE html>
                         <div class="code-dot red"></div>
                         <div class="code-dot yellow"></div>
                         <div class="code-dot green"></div>
-                        <span style="margin-left: 10px; color: #cccccc;">portfolio.js</span>
+                        <span style="margin-left: 10px; color: var(--text-color);">portfolio.js</span>
                     </div>
                     <div class="code-body">
-                        <div class="code-line"><span class="blue-text">const</span> <span class="yellow-text">developer</span> = {</div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="green-text">name</span>: <span class="white-text">"Hafiz Faizan"</span>,</div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="green-text">role</span>: <span class="white-text">"Frontend Developer"</span>,</div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="green-text">brand</span>: <span class="white-text">"Phoenix Solutions"</span>,</div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="green-text">specialty</span>: <span class="white-text">"Heavy Animations"</span>,</div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="green-text">colors</span>: [<span class="white-text">"Black"</span>, <span class="white-text">"Blue"</span>]</div>
+                        <div class="code-line"><span style="color: var(--primary-blue)">const</span> <span style="color: #ffbd2e">developer</span> = {</div>
+                        <div class="code-line">&nbsp;&nbsp;<span style="color: #27ca3f">name</span>: <span style="color: var(--text-color)">"Hafiz Faizan"</span>,</div>
+                        <div class="code-line">&nbsp;&nbsp;<span style="color: #27ca3f">role</span>: <span style="color: var(--text-color)">"Frontend Developer"</span>,</div>
+                        <div class="code-line">&nbsp;&nbsp;<span style="color: #27ca3f">brand</span>: <span style="color: var(--text-color)">"Phoenix Solutions"</span>,</div>
+                        <div class="code-line">&nbsp;&nbsp;<span style="color: #27ca3f">specialty</span>: <span style="color: var(--text-color)">"Heavy Animations"</span>,</div>
+                        <div class="code-line">&nbsp;&nbsp;<span style="color: #27ca3f">colors</span>: [<span style="color: var(--text-color)">"Black"</span>, <span style="color: var(--text-color)">"Blue"</span>]</div>
                         <div class="code-line">};</div>
                     </div>
                 </div>
@@ -2014,7 +2283,6 @@ DOCTYPE html>
     <footer>
         <div class="footer-logo-container">
             <div class="footer-logo">
-                <!-- Replace with your logo image -->
                 <img src="https://phoenix9248756.github.io/phoenixsolution/my%20pick.jpg" alt="Phoenix Solutions Logo" id="footer-logo-img">
             </div>
             <div class="footer-brand">Phoenix Solutions</div>
@@ -2035,22 +2303,159 @@ DOCTYPE html>
     </footer>
 
     <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Check for saved theme or prefer-color-scheme
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const currentTheme = localStorage.getItem('theme');
+        
+        // Set initial theme
+        if (currentTheme === 'light') {
+            body.classList.add('light-theme');
+        } else if (currentTheme === 'dark') {
+            body.classList.remove('light-theme');
+        } else if (prefersDarkScheme.matches) {
+            body.classList.remove('light-theme');
+        } else {
+            body.classList.add('light-theme');
+        }
+        
+        // Toggle theme with animation
+        themeToggle.addEventListener('click', () => {
+            // Add ripple effect
+            const ripple = document.createElement('div');
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.backgroundColor = 'rgba(0, 102, 255, 0.3)';
+            ripple.style.width = '5px';
+            ripple.style.height = '5px';
+            ripple.style.top = '50%';
+            ripple.style.left = '50%';
+            ripple.style.transform = 'translate(-50%, -50%)';
+            ripple.style.animation = 'rippleTheme 0.6s linear forwards';
+            ripple.style.zIndex = '1';
+            
+            themeToggle.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+            
+            // Add click animation to toggle button
+            themeToggle.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                themeToggle.style.transform = 'scale(1)';
+            }, 150);
+            
+            // Toggle theme
+            body.classList.toggle('light-theme');
+            
+            // Save theme preference
+            if (body.classList.contains('light-theme')) {
+                localStorage.setItem('theme', 'light');
+                // Update SVG colors for light theme
+                updateSvgColors('light');
+            } else {
+                localStorage.setItem('theme', 'dark');
+                // Update SVG colors for dark theme
+                updateSvgColors('dark');
+            }
+            
+            // Update all elements with theme transition
+            updateThemeTransition();
+        });
+        
+        // Function to update SVG colors based on theme
+        function updateSvgColors(theme) {
+            const svgElements = document.querySelectorAll('.hero-image svg circle, .hero-image svg path, .hero-image svg polygon');
+            svgElements.forEach(el => {
+                if (theme === 'light') {
+                    if (el.tagName === 'circle' && el.getAttribute('r') === '180') {
+                        el.style.stroke = '#0066ff';
+                    } else if (el.tagName === 'path') {
+                        el.style.stroke = '#0066ff';
+                    } else if (el.tagName === 'circle' && el.getAttribute('r') === '100') {
+                        el.style.stroke = '#3399ff';
+                    } else if (el.tagName === 'polygon') {
+                        el.style.stroke = '#0044cc';
+                    }
+                } else {
+                    if (el.tagName === 'circle' && el.getAttribute('r') === '180') {
+                        el.style.stroke = '#0066ff';
+                    } else if (el.tagName === 'path') {
+                        el.style.stroke = '#0066ff';
+                    } else if (el.tagName === 'circle' && el.getAttribute('r') === '100') {
+                        el.style.stroke = '#3399ff';
+                    } else if (el.tagName === 'polygon') {
+                        el.style.stroke = '#0044cc';
+                    }
+                }
+            });
+        }
+        
+        // Function to add smooth theme transition to all elements
+        function updateThemeTransition() {
+            const allElements = document.querySelectorAll('*');
+            allElements.forEach(el => {
+                el.style.transition = 'background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, opacity 0.5s ease';
+            });
+            
+            setTimeout(() => {
+                allElements.forEach(el => {
+                    el.style.transition = '';
+                });
+            }, 500);
+        }
+        
+        // Add CSS for theme ripple animation
+        const themeStyle = document.createElement('style');
+        themeStyle.textContent = `
+            @keyframes rippleTheme {
+                0% {
+                    width: 5px;
+                    height: 5px;
+                    opacity: 0.7;
+                }
+                100% {
+                    width: 200px;
+                    height: 200px;
+                    opacity: 0;
+                }
+            }
+            
+            /* Theme transition smoothness */
+            * {
+                transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            }
+        `;
+        document.head.appendChild(themeStyle);
+
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
         
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            menuToggle.querySelector('i').classList.toggle('fa-bars');
-            menuToggle.querySelector('i').classList.toggle('fa-times');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+            
+            // Add animation to menu toggle
+            menuToggle.style.transform = 'rotate(90deg)';
+            setTimeout(() => {
+                menuToggle.style.transform = 'rotate(0deg)';
+            }, 300);
         });
         
         // Close menu when clicking a link
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
-                menuToggle.querySelector('i').classList.add('fa-bars');
-                menuToggle.querySelector('i').classList.remove('fa-times');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
             });
         });
         
@@ -2066,6 +2471,8 @@ DOCTYPE html>
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
         }, observerOptions);
@@ -2092,13 +2499,20 @@ DOCTYPE html>
             submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
             submitBtn.style.background = 'linear-gradient(45deg, #27ca3f, #1ea832)';
             
+            // Add success animation
+            submitBtn.style.animation = 'submitPulse 0.5s ease-out';
+            
             setTimeout(() => {
                 submitBtn.innerHTML = originalText;
                 submitBtn.style.background = 'linear-gradient(45deg, var(--primary-blue), var(--dark-blue))';
+                submitBtn.style.animation = 'submitPulse 2s infinite';
             }, 2000);
             
             // Reset form
             contactForm.reset();
+            
+            // Show success message
+            showNotification('Message sent successfully!', 'success');
         });
         
         // Background shape animation on mouse move
@@ -2118,13 +2532,13 @@ DOCTYPE html>
         
         // Typewriter effect for hero text
         const heroTitle = document.querySelector('.hero-title');
-        const originalText = heroTitle.innerHTML;
+        const originalTitleText = heroTitle.innerHTML;
         heroTitle.innerHTML = '';
         
         let i = 0;
         function typeWriter() {
-            if (i < originalText.length) {
-                heroTitle.innerHTML += originalText.charAt(i);
+            if (i < originalTitleText.length) {
+                heroTitle.innerHTML += originalTitleText.charAt(i);
                 i++;
                 setTimeout(typeWriter, 50);
             }
@@ -2160,6 +2574,9 @@ DOCTYPE html>
                 icon.classList.add('fa-image');
                 this.style.backgroundColor = 'var(--dark-blue)';
                 this.innerHTML = '<i class="fas fa-image"></i><p style="font-size: 1rem; margin-top: 10px;">Click to upload your picture</p>';
+                
+                // Add animation
+                this.style.animation = 'placeholderPulse 1s ease-in-out';
             } else {
                 // Simulate uploading an image with animation
                 this.style.animation = 'none';
@@ -2182,6 +2599,9 @@ DOCTYPE html>
             
             this.src = "https://images.unsplash.com/photo-1611605698323-b1e99cfd37ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80";
             footerLogoImg.src = this.src;
+            
+            // Show notification
+            showNotification('Logo updated successfully!', 'info');
         });
         
         // Create particle effects
@@ -2269,6 +2689,50 @@ DOCTYPE html>
             });
         });
         
+        // Notification system
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.padding = '15px 25px';
+            notification.style.borderRadius = '8px';
+            notification.style.color = 'white';
+            notification.style.fontWeight = '500';
+            notification.style.zIndex = '10000';
+            notification.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+            notification.style.transform = 'translateX(150%)';
+            notification.style.transition = 'transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+            
+            if (type === 'success') {
+                notification.style.background = 'linear-gradient(45deg, #27ca3f, #1ea832)';
+            } else if (type === 'error') {
+                notification.style.background = 'linear-gradient(45deg, #ff5f56, #e53935)';
+            } else {
+                notification.style.background = 'linear-gradient(45deg, var(--primary-blue), var(--dark-blue))';
+            }
+            
+            notification.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+                <span style="margin-left: 10px;">${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+            
+            // Animate out after 3 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(150%)';
+                setTimeout(() => {
+                    notification.remove();
+                }, 500);
+            }, 3000);
+        }
+        
         // Add CSS for ripple effect
         const style = document.createElement('style');
         style.textContent = `
@@ -2293,6 +2757,11 @@ DOCTYPE html>
         document.querySelectorAll('.skill').forEach(skill => {
             skill.addEventListener('mouseenter', function() {
                 this.style.animation = 'skillAppear 0.5s ease-out';
+                this.style.transform = 'translateY(-5px) scale(1.05)';
+            });
+            
+            skill.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
             });
         });
         
@@ -2302,6 +2771,8 @@ DOCTYPE html>
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.animationPlayState = 'running';
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
                 }
             });
         }, observerOptions);
@@ -2309,6 +2780,109 @@ DOCTYPE html>
         timelineItems.forEach(item => {
             timelineObserver.observe(item);
         });
+        
+        // Animate contact items on scroll
+        const contactItems = document.querySelectorAll('.contact-item');
+        const contactObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, observerOptions);
+        
+        contactItems.forEach(item => {
+            contactObserver.observe(item);
+        });
+        
+        // Animate form groups on scroll
+        const formGroups = document.querySelectorAll('.form-group');
+        const formObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        formGroups.forEach(group => {
+            formObserver.observe(group);
+        });
+        
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add loading animation
+        window.addEventListener('load', () => {
+            // Add loaded class to body for any post-load animations
+            document.body.classList.add('loaded');
+            
+            // Show welcome notification
+            setTimeout(() => {
+                showNotification('Welcome to Phoenix Solutions! 🚀', 'info');
+            }, 1000);
+        });
+        
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Toggle theme with Ctrl+T
+            if (e.ctrlKey && e.key === 't') {
+                e.preventDefault();
+                themeToggle.click();
+            }
+            
+            // Escape to close menu
+            if (e.key === 'Escape') {
+                navMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        });
+        
+        // Add touch events for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            
+            // Swipe left to close menu
+            if (touchStartX - touchEndX > swipeThreshold && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        }
     </script>
 </body>
 </html>
