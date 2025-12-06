@@ -5511,362 +5511,291 @@ window.addEventListener('load', function() {
     }
 });
 
-// AI Showcase JavaScript
-class AIShowcase {
-    constructor() {
-        this.projects = [];
-        this.currentFilter = 'all';
-        this.init();
+// ============================================
+// AI-Powered Project Showcase - FIXED CODE
+// Paste this at the VERY END of your existing script
+// ============================================
+
+// Wait for page to fully load
+window.addEventListener('load', function() {
+    console.log('🚀 Initializing AI Showcase...');
+    
+    // Add Chart.js library
+    const chartScript = document.createElement('script');
+    chartScript.src = 'https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js';
+    chartScript.onload = initAIShowcase;
+    document.head.appendChild(chartScript);
+    
+    // Add required CSS animations
+    const aiCss = document.createElement('style');
+    aiCss.textContent = `
+        @keyframes rotate3d {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+        
+        @keyframes voicePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .ai-voice-btn.listening {
+            animation: voicePulse 1s infinite;
+            background: linear-gradient(45deg, #00ff88, #00cc66) !important;
+        }
+        
+        .view-project-btn:hover {
+            background: var(--primary-color) !important;
+            color: white !important;
+            transform: translateY(-3px) !important;
+        }
+    `;
+    document.head.appendChild(aiCss);
+});
+
+function initAIShowcase() {
+    console.log('📊 Chart.js loaded, starting AI Showcase...');
+    
+    // Check if required elements exist
+    if (!document.querySelector('#ai-showcase')) {
+        console.error('❌ AI Showcase section not found!');
+        return;
     }
     
-    init() {
-        this.loadProjects();
-        this.setupEventListeners();
-        this.initialize3DViewers();
-        this.initializeChart();
-        this.setupVoiceSearch();
-        this.animateTechMeters();
-    }
-    
-    loadProjects() {
-        // Mock project data - Replace with real data
-        this.projects = [
+    // Simple AI Showcase Implementation
+    const aiShowcase = {
+        projects: [
             {
                 id: 1,
                 title: "Animated E-Commerce Platform",
-                description: "Advanced e-commerce solution with 60+ micro-animations",
+                description: "Advanced e-commerce solution with 60+ micro-animations, 3D product visualization, and AI-powered recommendations.",
                 category: ["frontend", "animation", "responsive"],
-                tech: ["React", "GSAP", "Three.js", "Node.js"],
-                metrics: {
-                    performance: 98,
-                    responsiveness: 100,
-                    loadTime: 0.8,
-                    seo: 95
-                },
+                tech: ["React", "GSAP", "Three.js"],
                 rating: 4.7,
-                views: 2400,
-                badges: ["hot", "trending"],
-                demoUrl: "https://demo.phoenixsolutions.com/ecommerce",
-                codeUrl: "https://github.com/yourusername/ecommerce-platform"
+                views: "2.4K",
+                badges: ["hot", "trending"]
             },
             {
                 id: 2,
-                title: "AI Dashboard with Real-time Analytics",
-                description: "Real-time data visualization dashboard with AI predictions",
+                title: "AI Dashboard with Analytics",
+                description: "Real-time data visualization dashboard with AI predictions and interactive charts.",
                 category: ["frontend", "ai", "dashboard"],
-                tech: ["Vue.js", "D3.js", "TensorFlow.js", "WebSockets"],
-                metrics: {
-                    performance: 96,
-                    responsiveness: 98,
-                    loadTime: 1.2,
-                    seo: 92
-                },
+                tech: ["Vue.js", "D3.js", "TensorFlow.js"],
                 rating: 4.9,
-                views: 1800,
-                badges: ["featured", "innovative"],
-                demoUrl: "https://demo.phoenixsolutions.com/ai-dashboard",
-                codeUrl: "https://github.com/yourusername/ai-dashboard"
+                views: "1.8K",
+                badges: ["featured", "innovative"]
             },
             {
                 id: 3,
-                title: "Interactive Portfolio Generator",
-                description: "AI-powered portfolio generator with customizable templates",
+                title: "Portfolio Generator AI",
+                description: "AI-powered portfolio generator with customizable templates and automatic content suggestions.",
                 category: ["frontend", "ai", "tools"],
-                tech: ["Next.js", "OpenAI API", "Tailwind CSS", "Framer Motion"],
-                metrics: {
-                    performance: 99,
-                    responsiveness: 100,
-                    loadTime: 0.6,
-                    seo: 98
-                },
+                tech: ["Next.js", "OpenAI API", "Tailwind CSS"],
                 rating: 4.8,
-                views: 3200,
-                badges: ["popular", "ai"],
-                demoUrl: "https://demo.phoenixsolutions.com/portfolio-gen",
-                codeUrl: "https://github.com/yourusername/portfolio-generator"
+                views: "3.2K",
+                badges: ["popular", "ai"]
             }
-        ];
+        ],
         
-        this.renderProjectGrid();
-        this.generateAIRecommendations();
-    }
-    
-    setupEventListeners() {
-        // Filter buttons
-        document.querySelectorAll('.ai-filter-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.ai-filter-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                this.currentFilter = e.target.dataset.filter;
-                this.filterProjects();
+        init: function() {
+            console.log('🎯 Setting up AI Showcase...');
+            this.setupEventListeners();
+            this.setup3DViewer();
+            this.setupChart();
+            this.setupVoiceSearch();
+            this.setupProjectGrid();
+            this.setupRecommendations();
+            console.log('✅ AI Showcase ready!');
+            
+            // Show welcome notification
+            setTimeout(() => {
+                this.showNotification('🚀 AI Showcase Ready! Try filters and voice search.', 'success');
+            }, 1000);
+        },
+        
+        setupEventListeners: function() {
+            // Filter buttons
+            document.querySelectorAll('.ai-filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll('.ai-filter-btn').forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    btn.classList.add('active');
+                    
+                    const filter = btn.dataset.filter;
+                    this.filterProjects(filter);
+                });
             });
-        });
-        
-        // Search functionality
-        const searchInput = document.querySelector('.ai-search-input');
-        const searchBtn = document.querySelector('.ai-search-btn');
-        
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                this.searchProjects(searchInput.value);
+            
+            // Search button
+            const searchBtn = document.querySelector('.ai-search-btn');
+            const searchInput = document.querySelector('.ai-search-input');
+            
+            if (searchBtn && searchInput) {
+                searchBtn.addEventListener('click', () => {
+                    this.searchProjects(searchInput.value);
+                });
+                
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.searchProjects(searchInput.value);
+                    }
+                });
             }
-        });
-        
-        searchBtn.addEventListener('click', () => {
-            this.searchProjects(searchInput.value);
-        });
-        
-        // Project action buttons
-        document.querySelectorAll('.btn-live-demo').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const projectId = e.target.dataset.project;
-                this.openLiveDemo(projectId);
-            });
-        });
-        
-        document.querySelectorAll('.btn-code-view').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const projectId = e.target.dataset.project;
-                this.viewCode(projectId);
-            });
-        });
-        
-        document.querySelectorAll('.btn-ai-analyze').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const projectId = e.target.dataset.project;
-                this.showAIAnalysis(projectId);
-            });
-        });
-        
-        // Modal close
-        document.querySelector('.modal-close').addEventListener('click', () => {
-            this.closeModal();
-        });
-        
-        // Close modal on outside click
-        document.getElementById('liveDemoModal').addEventListener('click', (e) => {
-            if (e.target.id === 'liveDemoModal') {
-                this.closeModal();
+            
+            // Live Demo button
+            const demoBtn = document.querySelector('.btn-live-demo');
+            if (demoBtn) {
+                demoBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.openLiveDemo();
+                });
             }
-        });
-    }
-    
-    setupVoiceSearch() {
-        const voiceBtn = document.querySelector('.ai-voice-btn');
+            
+            // Code View button
+            const codeBtn = document.querySelector('.btn-code-view');
+            if (codeBtn) {
+                codeBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.viewCode();
+                });
+            }
+            
+            // AI Analysis button
+            const aiBtn = document.querySelector('.btn-ai-analyze');
+            if (aiBtn) {
+                aiBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.showAIAnalysis();
+                });
+            }
+            
+            // Modal close
+            const modalClose = document.querySelector('.modal-close');
+            const modal = document.getElementById('liveDemoModal');
+            
+            if (modalClose) {
+                modalClose.addEventListener('click', () => {
+                    this.closeModal();
+                });
+            }
+            
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        this.closeModal();
+                    }
+                });
+            }
+            
+            // ESC key to close modal
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    this.closeModal();
+                }
+            });
+        },
         
-        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        filterProjects: function(filterType) {
+            let filtered = [];
+            
+            switch(filterType) {
+                case 'all':
+                    filtered = this.projects;
+                    break;
+                case 'frontend':
+                    filtered = this.projects.filter(p => p.category.includes('frontend'));
+                    break;
+                case 'animation':
+                    filtered = this.projects.filter(p => p.category.includes('animation'));
+                    break;
+                case 'responsive':
+                    filtered = this.projects.filter(p => p.category.includes('responsive'));
+                    break;
+                case 'ai-recommended':
+                    filtered = this.projects.slice(0, 2); // Top 2 as AI recommended
+                    break;
+                default:
+                    filtered = this.projects;
+            }
+            
+            this.showNotification(`Showing ${filtered.length} ${filterType} projects`, 'info');
+            console.log(`Filtered: ${filterType}`, filtered);
+        },
+        
+        searchProjects: function(query) {
+            if (!query.trim()) {
+                this.showNotification('Please enter a search term', 'error');
+                return;
+            }
+            
+            const results = this.projects.filter(project => 
+                project.title.toLowerCase().includes(query.toLowerCase()) ||
+                project.description.toLowerCase().includes(query.toLowerCase()) ||
+                project.tech.some(tech => tech.toLowerCase().includes(query.toLowerCase()))
+            );
+            
+            if (results.length > 0) {
+                this.showNotification(`Found ${results.length} projects for "${query}"`, 'success');
+            } else {
+                this.showNotification(`No projects found for "${query}"`, 'error');
+            }
+        },
+        
+        setupVoiceSearch: function() {
+            const voiceBtn = document.querySelector('.ai-voice-btn');
+            if (!voiceBtn) return;
+            
+            // Check if browser supports voice recognition
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                voiceBtn.style.display = 'none';
+                console.log('Voice recognition not supported');
+                return;
+            }
+            
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             const recognition = new SpeechRecognition();
             
             recognition.continuous = false;
             recognition.interimResults = false;
+            recognition.lang = 'en-US';
             
             voiceBtn.addEventListener('click', () => {
-                if (!voiceBtn.classList.contains('listening')) {
-                    voiceBtn.classList.add('listening');
-                    recognition.start();
-                    
-                    // Show voice listening animation
-                    showNotification('Listening... Speak now', 'info');
-                } else {
-                    voiceBtn.classList.remove('listening');
+                if (voiceBtn.classList.contains('listening')) {
                     recognition.stop();
+                    voiceBtn.classList.remove('listening');
+                    return;
                 }
+                
+                voiceBtn.classList.add('listening');
+                this.showNotification('🎤 Listening... Speak now', 'info');
+                
+                recognition.start();
+                
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    document.querySelector('.ai-search-input').value = transcript;
+                    voiceBtn.classList.remove('listening');
+                    this.searchProjects(transcript);
+                };
+                
+                recognition.onerror = (event) => {
+                    console.error('Speech recognition error', event.error);
+                    voiceBtn.classList.remove('listening');
+                    this.showNotification('Voice recognition failed. Try typing.', 'error');
+                };
+                
+                recognition.onend = () => {
+                    voiceBtn.classList.remove('listening');
+                };
             });
+        },
+        
+        setup3DViewer: function() {
+            const viewer = document.querySelector('.project-3d-viewer');
+            if (!viewer) return;
             
-            recognition.onresult = (e) => {
-                const transcript = e.results[0][0].transcript;
-                document.querySelector('.ai-search-input').value = transcript;
-                this.searchProjects(transcript);
-                voiceBtn.classList.remove('listening');
-                showNotification(`Searching for: ${transcript}`, 'success');
-            };
-            
-            recognition.onerror = () => {
-                voiceBtn.classList.remove('listening');
-                showNotification('Voice recognition failed. Try typing instead.', 'error');
-            };
-        } else {
-            voiceBtn.style.display = 'none';
-        }
-    }
-    
-    filterProjects() {
-        if (this.currentFilter === 'all') {
-            this.renderProjectGrid(this.projects);
-        } else if (this.currentFilter === 'ai-recommended') {
-            const recommended = this.getAIRecommendations();
-            this.renderProjectGrid(recommended);
-        } else {
-            const filtered = this.projects.filter(project => 
-                project.category.includes(this.currentFilter)
-            );
-            this.renderProjectGrid(filtered);
-        }
-    }
-    
-    searchProjects(query) {
-        if (!query.trim()) {
-            this.renderProjectGrid(this.projects);
-            return;
-        }
-        
-        const results = this.projects.filter(project => 
-            project.title.toLowerCase().includes(query.toLowerCase()) ||
-            project.description.toLowerCase().includes(query.toLowerCase()) ||
-            project.tech.some(tech => tech.toLowerCase().includes(query.toLowerCase()))
-        );
-        
-        this.renderProjectGrid(results);
-        
-        if (results.length === 0) {
-            showNotification(`No projects found for "${query}"`, 'error');
-        } else {
-            showNotification(`Found ${results.length} projects for "${query}"`, 'success');
-        }
-    }
-    
-    getAIRecommendations() {
-        // Simple AI recommendation algorithm
-        return this.projects.sort((a, b) => {
-            // Prioritize based on multiple factors
-            const scoreA = (a.rating * 20) + (a.views / 100) + (a.metrics.performance / 2);
-            const scoreB = (b.rating * 20) + (b.views / 100) + (b.metrics.performance / 2);
-            return scoreB - scoreA;
-        }).slice(0, 3);
-    }
-    
-    generateAIRecommendations() {
-        const recommendations = this.getAIRecommendations();
-        const container = document.querySelector('.recommendation-list');
-        
-        container.innerHTML = recommendations.map(project => `
-            <div class="recommendation-item" data-id="${project.id}">
-                <strong>${project.title}</strong>
-                <p style="font-size: 0.9rem; margin-top: 5px; opacity: 0.8;">
-                    ${project.description.substring(0, 60)}...
-                </p>
-                <div style="display: flex; gap: 10px; margin-top: 10px;">
-                    ${project.badges.map(badge => 
-                        `<span style="font-size: 0.7rem; padding: 2px 8px; background: rgba(var(--primary-color-rgb), 0.1); border-radius: 10px;">${badge}</span>`
-                    ).join('')}
-                </div>
-            </div>
-        `).join('');
-        
-        // Add click events to recommendations
-        container.querySelectorAll('.recommendation-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const projectId = item.dataset.id;
-                const project = this.projects.find(p => p.id == projectId);
-                if (project) {
-                    this.highlightProject(project);
-                }
-            });
-        });
-    }
-    
-    highlightProject(project) {
-        // Update featured project display
-        const card = document.querySelector('.ai-project-card.featured');
-        
-        card.querySelector('.ai-project-title').textContent = project.title;
-        card.querySelector('.ai-project-desc').textContent = project.description;
-        
-        // Update metrics
-        const metrics = card.querySelector('.ai-project-metrics');
-        metrics.querySelector('.metric-value:nth-child(1)').textContent = `${project.metrics.performance}%`;
-        metrics.querySelector('.metric-value:nth-child(2)').textContent = `${project.metrics.responsiveness}%`;
-        metrics.querySelector('.metric-value:nth-child(3)').textContent = `${project.metrics.loadTime}s`;
-        
-        // Update buttons
-        card.querySelectorAll('[data-project]').forEach(btn => {
-            btn.dataset.project = project.id;
-        });
-        
-        // Animate update
-        card.style.animation = 'none';
-        setTimeout(() => {
-            card.style.animation = 'cardGlow 3s infinite alternate';
-        }, 10);
-        
-        showNotification(`Now viewing: ${project.title}`, 'info');
-    }
-    
-    openLiveDemo(projectId) {
-        const project = this.projects.find(p => p.id == projectId);
-        if (!project) return;
-        
-        const modal = document.getElementById('liveDemoModal');
-        const iframe = modal.querySelector('.live-demo-frame');
-        
-        modal.classList.add('active');
-        iframe.src = project.demoUrl;
-        
-        document.body.style.overflow = 'hidden';
-        
-        // Track demo view
-        this.trackProjectView(projectId, 'demo');
-    }
-    
-    viewCode(projectId) {
-        const project = this.projects.find(p => p.id == projectId);
-        if (!project) return;
-        
-        window.open(project.codeUrl, '_blank');
-        
-        // Track code view
-        this.trackProjectView(projectId, 'code');
-    }
-    
-    showAIAnalysis(projectId) {
-        const project = this.projects.find(p => p.id == projectId);
-        if (!project) return;
-        
-        // Generate AI analysis
-        const analysis = this.generateAIAnalysis(project);
-        
-        showNotification(analysis, 'info', 5000);
-        
-        // Track AI analysis
-        this.trackProjectView(projectId, 'ai_analysis');
-    }
-    
-    generateAIAnalysis(project) {
-        const strengths = [
-            `Exceptional performance (${project.metrics.performance}% score)`,
-            `Perfect responsive design (${project.metrics.responsiveness}% mobile compatible)`,
-            `Fast load time (${project.metrics.loadTime}s)`,
-            `High user rating (${project.rating}/5 stars)`
-        ];
-        
-        const recommendations = [
-            "Consider adding more interactive animations",
-            "Implement progressive web app features",
-            "Add offline functionality",
-            "Integrate more AI capabilities"
-        ];
-        
-        const randomStrength = strengths[Math.floor(Math.random() * strengths.length)];
-        const randomRecommendation = recommendations[Math.floor(Math.random() * recommendations.length)];
-        
-        return `🤖 AI Analysis for "${project.title}":\n\n💪 Strength: ${randomStrength}\n\n💡 Recommendation: ${randomRecommendation}\n\n⭐ Overall Score: ${((project.metrics.performance + project.metrics.responsiveness + project.rating * 20) / 3).toFixed(1)}/100`;
-    }
-    
-    closeModal() {
-        const modal = document.getElementById('liveDemoModal');
-        const iframe = modal.querySelector('.live-demo-frame');
-        
-        modal.classList.remove('active');
-        iframe.src = '';
-        
-        document.body.style.overflow = 'auto';
-    }
-    
-    initialize3DViewers() {
-        // Simple CSS 3D animation for project cards
-        const viewers = document.querySelectorAll('.project-3d-viewer');
-        viewers.forEach(viewer => {
             viewer.innerHTML = `
                 <div style="
                     width: 100%;
@@ -5891,202 +5820,272 @@ class AIShowcase {
                     "></div>
                 </div>
             `;
-        });
-    }
-    
-    initializeChart() {
-        const ctx = document.getElementById('projectStatsChart');
-        if (!ctx) return;
+        },
         
-        const chart = new Chart(ctx.getContext('2d'), {
-            type: 'radar',
-            data: {
-                labels: ['Performance', 'Responsiveness', 'Load Time', 'SEO', 'UX/UI', 'Code Quality'],
-                datasets: [{
-                    label: 'Project Metrics',
-                    data: [98, 100, 95, 92, 96, 94],
-                    backgroundColor: 'rgba(var(--primary-color-rgb), 0.2)',
-                    borderColor: 'rgba(var(--primary-color-rgb), 1)',
-                    borderWidth: 2,
-                    pointBackgroundColor: 'rgba(var(--primary-color-rgb), 1)'
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    r: {
-                        beginAtZero: true,
-                        max: 100,
-                        ticks: {
-                            display: false
+        setupChart: function() {
+            const ctx = document.getElementById('projectStatsChart');
+            if (!ctx) {
+                console.log('Chart canvas not found');
+                return;
+            }
+            
+            try {
+                new Chart(ctx.getContext('2d'), {
+                    type: 'radar',
+                    data: {
+                        labels: ['Performance', 'Responsiveness', 'Load Time', 'UX/UI', 'Code Quality'],
+                        datasets: [{
+                            data: [98, 100, 95, 92, 96],
+                            backgroundColor: 'rgba(0, 102, 255, 0.2)',
+                            borderColor: 'rgba(0, 102, 255, 1)',
+                            borderWidth: 2,
+                            pointBackgroundColor: 'rgba(0, 102, 255, 1)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: { display: false }
+                            }
+                        },
+                        plugins: {
+                            legend: { display: false }
                         }
                     }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                }
+                });
+                
+                console.log('📈 Chart initialized successfully');
+            } catch (error) {
+                console.error('Chart error:', error);
             }
-        });
-    }
-    
-    animateTechMeters() {
-        const techItems = document.querySelectorAll('.tech-item');
-        techItems.forEach(item => {
-            const skill = item.dataset.skill;
-            const fill = item.querySelector('.tech-fill');
-            
-            // Animate on scroll
-            const observer = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting) {
-                    fill.style.width = skill + '%';
-                    fill.style.transition = 'width 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-                }
-            });
-            
-            observer.observe(item);
-        });
-    }
-    
-    renderProjectGrid(projects = this.projects) {
-        const container = document.querySelector('.ai-project-grid');
-        if (!container) return;
+        },
         
-        container.innerHTML = projects.map(project => `
-            <div class="project-card ai-card" data-id="${project.id}">
-                <div class="project-image" style="
-                    background: linear-gradient(135deg, 
-                        rgba(var(--primary-color-rgb), 0.3) 0%,
-                        rgba(var(--dark-color-rgb), 0.5) 100%
-                    );
-                    height: 200px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                ">
-                    <div style="
-                        width: 100px;
-                        height: 100px;
-                        background: rgba(255,255,255,0.2);
-                        border-radius: 50%;
+        setupProjectGrid: function() {
+            const grid = document.querySelector('.ai-project-grid');
+            if (!grid) return;
+            
+            grid.innerHTML = this.projects.map(project => `
+                <div class="project-card">
+                    <div class="project-image" style="
+                        background: linear-gradient(135deg, 
+                            rgba(0, 102, 255, 0.3) 0%,
+                            rgba(0, 68, 204, 0.5) 100%
+                        );
+                        height: 200px;
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        font-size: 2.5rem;
-                        color: white;
                     ">
-                        <i class="fas fa-code"></i>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <div style="display: flex; justify-content: space-between; align-items: start;">
-                        <h3 class="project-title">${project.title}</h3>
-                        <span style="
-                            background: linear-gradient(45deg, var(--primary-color), var(--dark-color));
+                        <div style="
+                            width: 100px;
+                            height: 100px;
+                            background: rgba(255,255,255,0.2);
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 2.5rem;
                             color: white;
-                            padding: 3px 10px;
-                            border-radius: 15px;
-                            font-size: 0.8rem;
-                            font-weight: 600;
-                        ">⭐ ${project.rating}</span>
-                    </div>
-                    <p class="project-description">${project.description}</p>
-                    
-                    <div style="display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap;">
-                        ${project.badges.map(badge => `
-                            <span style="
-                                font-size: 0.7rem;
-                                padding: 3px 10px;
-                                background: rgba(var(--primary-color-rgb), 0.1);
-                                border-radius: 15px;
-                                border: 1px solid rgba(var(--primary-color-rgb), 0.3);
-                            ">${badge.toUpperCase()}</span>
-                        `).join('')}
-                    </div>
-                    
-                    <div class="project-tech">
-                        ${project.tech.map(tech => `
-                            <span class="tech-tag">${tech}</span>
-                        `).join('')}
-                    </div>
-                    
-                    <div style="margin-top: 15px; display: flex; gap: 10px;">
-                        <button class="btn-view-project" data-id="${project.id}" style="
-                            flex: 1;
-                            padding: 8px 15px;
-                            background: rgba(var(--primary-color-rgb), 0.1);
-                            border: 2px solid var(--primary-color);
-                            border-radius: 8px;
-                            color: var(--primary-color);
-                            font-weight: 600;
-                            cursor: pointer;
-                            transition: all 0.3s;
                         ">
-                            <i class="fas fa-external-link-alt"></i> View
-                        </button>
+                            <i class="fas fa-${project.id === 1 ? 'shopping-cart' : project.id === 2 ? 'chart-line' : 'robot'}"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <h3 class="project-title">${project.title}</h3>
+                            <span style="
+                                background: linear-gradient(45deg, #0066ff, #0044cc);
+                                color: white;
+                                padding: 3px 10px;
+                                border-radius: 15px;
+                                font-size: 0.8rem;
+                                font-weight: 600;
+                            ">⭐ ${project.rating}</span>
+                        </div>
+                        <p class="project-description">${project.description.substring(0, 80)}...</p>
+                        
+                        <div style="display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap;">
+                            ${project.badges.map(badge => `
+                                <span style="
+                                    font-size: 0.7rem;
+                                    padding: 3px 10px;
+                                    background: rgba(0, 102, 255, 0.1);
+                                    border-radius: 15px;
+                                    border: 1px solid rgba(0, 102, 255, 0.3);
+                                ">${badge.toUpperCase()}</span>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="project-tech">
+                            ${project.tech.slice(0, 3).map(tech => `
+                                <span class="tech-tag">${tech}</span>
+                            `).join('')}
+                        </div>
+                        
+                        <div style="margin-top: 15px; display: flex; gap: 10px;">
+                            <button class="view-project-btn" data-id="${project.id}" style="
+                                flex: 1;
+                                padding: 8px 15px;
+                                background: rgba(0, 102, 255, 0.1);
+                                border: 2px solid #0066ff;
+                                border-radius: 8px;
+                                color: #0066ff;
+                                font-weight: 600;
+                                cursor: pointer;
+                                transition: all 0.3s;
+                            ">
+                                <i class="fas fa-external-link-alt"></i> View Details
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `).join('');
-        
-        // Add click events to view buttons
-        container.querySelectorAll('.btn-view-project').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const projectId = e.target.closest('button').dataset.id;
-                const project = this.projects.find(p => p.id == projectId);
-                if (project) {
-                    this.highlightProject(project);
-                    
-                    // Scroll to featured section
-                    document.querySelector('#ai-showcase').scrollIntoView({ 
-                        behavior: 'smooth' 
-                    });
-                }
+            `).join('');
+            
+            // Add click events to view buttons
+            grid.querySelectorAll('.view-project-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const projectId = parseInt(btn.dataset.id);
+                    const project = this.projects.find(p => p.id === projectId);
+                    if (project) {
+                        this.showNotification(`Viewing: ${project.title}`, 'info');
+                        // Scroll to featured project
+                        document.querySelector('#ai-showcase').scrollIntoView({ 
+                            behavior: 'smooth' 
+                        });
+                    }
+                });
             });
-        });
-    }
-    
-    trackProjectView(projectId, action) {
-        // In real implementation, send to analytics
-        console.log(`Tracked: Project ${projectId} - ${action}`);
+        },
         
-        // Update views locally
-        const project = this.projects.find(p => p.id == projectId);
-        if (project) {
-            project.views += 1;
-            this.updateViewCount(projectId);
-        }
-    }
-    
-    updateViewCount(projectId) {
-        const projectElement = document.querySelector(`[data-id="${projectId}"]`);
-        if (projectElement) {
-            const viewsElement = projectElement.querySelector('.views span');
-            if (viewsElement) {
-                const project = this.projects.find(p => p.id == projectId);
-                if (project) {
-                    viewsElement.textContent = this.formatNumber(project.views);
+        setupRecommendations: function() {
+            const recList = document.querySelector('.recommendation-list');
+            if (!recList) return;
+            
+            const recommendations = this.projects.slice(0, 2); // Top 2 as recommendations
+            
+            recList.innerHTML = recommendations.map(project => `
+                <div class="recommendation-item" data-id="${project.id}">
+                    <strong>${project.title}</strong>
+                    <p style="font-size: 0.9rem; margin-top: 5px; opacity: 0.8;">
+                        ${project.description.substring(0, 60)}...
+                    </p>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        ${project.badges.map(badge => 
+                            `<span style="font-size: 0.7rem; padding: 2px 8px; background: rgba(0, 102, 255, 0.1); border-radius: 10px;">${badge}</span>`
+                        ).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+            // Add click events to recommendations
+            recList.querySeectorAll('.recommendation-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const projectId = parseInt(item.dataset.id);
+                    const project = this.projects.find(p => p.id === projectId);
+                    if (project) {
+                        this.showNotification(`AI recommends: ${project.title}`, 'info');
+                    }
+                });
+            });
+        },
+        
+        openLiveDemo: function() {
+            const modal = document.getElementById('liveDemoModal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                this.showNotification('Opening Live Demo...', 'success');
+            }
+        },
+        
+        viewCode: function() {
+            this.showNotification('Viewing source code on GitHub...', 'info');
+            // In real implementation, open GitHub link
+        },
+        
+        showAIAnalysis: function() {
+            const analyses = [
+                "🤖 AI Analysis: This project demonstrates exceptional frontend skills with modern animations.",
+                "🧠 AI Insight: Performance score of 98% indicates optimized code and efficient rendering.",
+                "💡 AI Suggestion: Consider adding more interactive elements to enhance user engagement.",
+                "📊 AI Report: Project ranks in top 10% of portfolio projects for technical excellence."
+            ];
+            
+            const randomAnalysis = analyses[Math.floor(Math.random() * analyses.length)];
+            this.showNotification(randomAnalysis, 'info', 5000);
+        },
+        
+        closeModal: function() {
+            const modal = document.getElementById('liveDemoModal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        },
+        
+        showNotification: function(message, type = 'info', duration = 3000) {
+            // Use your existing notification function if available
+            if (typeof showNotification === 'function') {
+                showNotification(message, type);
+            } else {
+                // Fallback notification
+                console.log(`${type.toUpperCase()}: ${message}`);
+                
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 15px 25px;
+                    background: ${type === 'success' ? '#27ca3f' : type === 'error' ? '#ff5f56' : '#0066ff'};
+                    color: white;
+                    border-radius: 10px;
+                    z-index: 10000;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                    animation: slideIn 0.3s ease;
+                `;
+                
+                notification.innerHTML = `
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span style="margin-left: 10px;">${message}</span>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }, duration);
+                
+                // Add animation styles if not exist
+                if (!document.querySelector('#ai-notification-styles')) {
+                    const style = document.createElement('style');
+                    style.id = 'ai-notification-styles';
+                    style.textContent = `
+                        @keyframes slideIn {
+                            from { transform: translateX(100%); opacity: 0; }
+                            to { transform: translateX(0); opacity: 1; }
+                        }
+                        @keyframes slideOut {
+                            from { transform: translateX(0); opacity: 1; }
+                            to { transform: translateX(100%); opacity: 0; }
+                        }
+                    `;
+                    document.head.appendChild(style);
                 }
             }
         }
-    }
+    };
     
-    formatNumber(num) {
-        if (num >= 1000) {
-            return (num / 1000).toFixed(1) + 'K';
-        }
-        return num.toString();
-    }
-}
-
-// Initialize AI Showcase when page loads
-window.addEventListener('DOMContentLoaded', () => {
-    const aiShowcase = new AIShowcase();
+    // Start the AI Showcase
+    aiShowcase.init();
     
-    // Expose to global scope for debugging
+    // Make it available globally for debugging
     window.aiShowcase = aiShowcase;
-});
+}
     </script>
 </body>
 </html>
